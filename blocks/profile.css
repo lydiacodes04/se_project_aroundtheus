@@ -50,7 +50,6 @@
 }
 
 .profile__edit-button:hover {
-  background: transparent url(../images/edit-active.svg) center no-repeat;
   opacity: 60%;
 }
 
@@ -61,10 +60,10 @@
   height: 50px;
   margin-left: auto;
   border: 2px solid #fff;
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {
-  background: transparent url(../images/add-active.svg) center no-repeat;
   opacity: 60%;
 }
 
