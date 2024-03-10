@@ -18,9 +18,3 @@
     width: 80%;
   }
 }
-
-@media screen and (max-width: 786px) {
-  .cards {
-    width: 80%;
-  }
-}

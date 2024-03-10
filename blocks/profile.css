@@ -22,6 +22,7 @@
 
 .profile__title {
   font-size: 42px;
+  /*This is the font-size listed in the brief. Should I try to adjust this in some way? I notice when I remove the font-size designation using the DevTools, it all fits. This is of course because the font size is smaller. Should this be relative in some way? The notes on the TripleTen description of the project said not to us em/rem.*/
   line-height: 1.14;
   font-weight: 500;
   grid-area: title;
@@ -29,7 +30,8 @@
   margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* overflow: hidden; */
+  overflow: hidden;
+  /* I commented out the "hidden" property as I thought it made all the text cut off too soon. You mentioned this in your comment. I do notice that there is a gap between the profile title and the edit button, but I can't seem to see where it is coming from. There is no margin or padding on the element. When I put grid-gap:0; it doesn't fix it.*/
 }
 
 .profile__subtitle {
@@ -99,6 +101,8 @@
 
   .profile__info {
     max-width: 60%;
+
+    /* I put this designation in order to center the contents and so that the edit button and profile__title would be closer together. I noticed that if I removed this designation, the text of the profile__title would assume a wide amount of space on either side (though it is not margin), and the edit button would be pushed way to the side. I do not know how to fix this. Please help. */
   }
 
   .profile__image {
@@ -107,9 +111,9 @@
 
   .profile__title {
     font-size: 22px;
+    line-height: 1.2;
     text-align: center;
     margin: 4vh 0 2vh;
-    width: 100%;
   }
 
   .profile__subtitle {
