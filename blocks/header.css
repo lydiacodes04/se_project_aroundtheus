@@ -1,7 +1,7 @@
 .header {
   margin-top: 45px;
   padding-bottom: 41px;
-  border-bottom: 1px solid rgba(84, 84, 84, 1);
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 .header__logo {
@@ -9,21 +9,16 @@
   height: 33px;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 660px) {
   .header {
-    /*
-    margin-left: 10vw;
-    */
-
     width: 100%;
-    margin-top: 38px;
-    padding-bottom: 32px;
+    margin: 28px 0 42px;
+    padding-bottom: 0;
   }
 
   .header__logo {
-    margin-left: 10vw;
+    margin: 0px 167px 32px 27px;
+    padding: 0;
     width: 126px;
-    height: 24px;
   }
-  /*I created this section and specified width and height as you mentioned the header logo was too small on 320 viewports. If there is a better way to fix this, let me know. */
 }
