@@ -2,6 +2,8 @@
   background-color: black;
   color: #fff;
   margin: 0 5vw 2vw;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .page__section {
