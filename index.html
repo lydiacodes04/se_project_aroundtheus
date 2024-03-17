@@ -28,6 +28,7 @@
               aria-label="edit"
               class="profile__edit-button"
               type="button"
+              id="profile-edit-button"
             ></button>
             <p class="profile__subtitle">Explorer</p>
           </div>
@@ -136,19 +137,23 @@
         <p class="footer__text">© 2022 Around the U.S.</p>
       </footer>
     </div>
-    <div class="modal">
+    <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
+        <button
+          id="profile-close-button"
+          class="modal__close"
+          type="button"
+        ></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
           <input
-            class="modal__field"
+            class="modal__input"
             type="text"
             name="title"
             placeholder="Jacques Cousteau"
           />
           <input
-            class="modal__field"
+            class="modal__input"
             type="text"
             name="subtitle"
             placeholder="Explorer"
