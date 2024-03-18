@@ -31,7 +31,7 @@
   overflow: hidden;
 }
 
-.profile__subtitle {
+.profile__description {
   font-size: 18px;
   line-height: 1.2;
   font-weight: 400;
@@ -115,7 +115,7 @@
     margin: 30px 10px 14px;
   }
 
-  .profile__subtitle {
+  .profile__description {
     max-width: 100%;
     text-align: center;
     font-size: 14px;
