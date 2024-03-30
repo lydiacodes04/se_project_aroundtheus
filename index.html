@@ -28,7 +28,6 @@
               aria-label="edit"
               class="profile__edit-button"
               type="button"
-              id="profile-edit-button"
             ></button>
             <p class="profile__description">Explorer</p>
           </div>
@@ -58,7 +57,7 @@
           type="button"
         ></button>
         <p class="modal__heading">Edit profile</p>
-        <form class="modal__form">
+        <form class="modal__form" id="profile-edit-modal-form">
           <input
             class="modal__input"
             type="text"
@@ -81,11 +80,10 @@
     <!--                   -->
     <!-- Add card modal -->
     <!--                    -->
-
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
         <button
-          id="profile-close-button"
+          id="add-card-close-button"
           class="modal__close"
           type="button"
         ></button>
@@ -95,14 +93,14 @@
             class="modal__input modal__input_type_title"
             type="text"
             name="title"
-            id="profile-title-input"
+            id="card-title-input"
             placeholder="Title"
           />
           <input
             class="modal__input modal__input_type_url"
             type="text"
             name="link"
-            id="profile-description-input"
+            id="card-image-input"
             placeholder="Image link"
           />
           <button class="modal__save" type="submit">Save</button>
@@ -110,6 +108,7 @@
       </div>
     </div>
     <!--                    -->
+    <!-- Card Template      -->
     <!--                    -->
     <template id="card-template">
       <li class="card">

@@ -26,62 +26,86 @@ const initialCards = [
 ];
 
 // ELEMENTS
-const profileEditButton = document.querySelector("#profile-edit-button");
+const profileEditButton = document.querySelector(".profile__edit-button");
+
 const profileEditModal = document.querySelector("#profile-edit-modal");
+
+const addNewCardButton = document.querySelector(".profile__add-button");
+
 const addCardModal = document.querySelector("#add-card-modal");
 
 const profileModalCloseButton = profileEditModal.querySelector(
   "#profile-close-button"
 );
 const addCardModalCloseButton = addCardModal.querySelector(
-  "#profile-close-button"
+  "#add-card-close-button"
 );
 
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
+
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
-const addNewCardButton = document.querySelector(".profile__add-button");
+const profileEditForm = profileEditModal.querySelector(
+  "#profile-edit-modal-form"
+);
 
-const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
+
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
+const cardInput = document.querySelector("#add-card-modal");
+
+// const cardTitle = document.querySelector(".card__title");
+// const cardImage = document.querySelector(".card__image");
+// const addCardForm = document.querySelector("#add-card-form");
+
+const cardTitleInput = document.querySelector("#card-title-input");
+const cardImageInput = document.querySelector("#card-image-input");
+
 // FUNCTIONS
-function closeModal() {
-  profileEditModal.classList.remove("modal_opened");
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
 }
 
+//NOTE: for me, renderCard is getCardElement
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
-  // const likeButton = cardElement.querySelector(".card__like-button");
-  // likeButton.addEventListener("click", () => {
-  //   likeButton.classList.toggle(".card__like-button_active");
-  // });
-
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
-
+  cardListEl.prepend(cardElement);
   return cardElement;
 }
+//NEXT STEPS:
+//find the delete button
+//add the event listener to the delete button
+// cardElement.remove();
+
+//add click listener to the cardImage
+
+//openModal with previewImageModal
 
 //EVENT HANDLERS
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closeModal();
+  closeModal(profileEditModal);
 }
 
 //EVENT LISTENERS
@@ -97,20 +121,25 @@ profileModalCloseButton.addEventListener("click", () =>
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
-//add new card button
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
 
+addCardModal.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = e.target.title.value;
+  const link = e.target.link.value;
+  getCardElement({
+    name: title,
+    link: link,
+  });
+  closeModal(addCardModal);
+});
+
+//initial cards
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardListEl.append(cardElement);
-});
-
-const likeButtons = document.querySelectorAll(".card__like-button");
-likeButtons.forEach((likeButton) => {
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
 });
