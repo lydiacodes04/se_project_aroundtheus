@@ -63,6 +63,11 @@ const cardInput = document.querySelector("#add-card-modal");
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardImageInput = document.querySelector("#card-image-input");
 
+const trashButton = cardTemplate.querySelector(".card__trash-button");
+
+const previewImageModal = cardTemplate.querySelector("#modal__image-container");
+const previewImageElement = cardTemplate.querySelector(".modal__image-preview");
+
 // FUNCTIONS
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
@@ -79,42 +84,43 @@ function renderInitialCards(cardEl, container) {
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
+// function deleteCard(cardElement) {
+//   cardElement.remove();
+// }
 
 //I renamed this function from getCardElement to getCardView to match the video
 function getCardView(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
-  // trashButton.addEventListener("click", () => {
-  //   trashButton.classList.toggle(".card__trash-button");
-  // });
+  const likeButton = cardElement.querySelector(".card__like-button");
+  //handleLikeIcon
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+  //handleDeleteCard
+  trashButton.addEventListener("click", () => deleteCard(cardElement));
 
-  //add event listener for delete (trash icon, .remove to make it go away)
-  //cardEl.remove();
+  //handlePreviewPicture
+  cardImageEl.addEventListener("click", function () {
+    previewImageElement.src = cardData.link;
+    previewImageElement.alt = cardData.name;
+    previewImageElement.textContent = cardData.name;
+    openModal(previewImageElement);
+  });
 
-  //add event listener for image (make image open a modal and become large)
-  //open image popup-->create 3rd popup
+  //NEXT STEPS:
+
+  //openModal with previewImageModal -->create 3rd popup
   // find image element inside popup
   //replace src with card link
   // replace alt with card title
 
   return cardElement;
 }
-//NEXT STEPS:
-
-//add the event listener to the delete button
-// cardElement.remove();
-
-//add click listener to the cardImage
-
-//openModal with previewImageModal
 
 //EVENT HANDLERS
 function handleProfileEditSubmit(e) {
