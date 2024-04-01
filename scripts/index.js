@@ -60,10 +60,6 @@ const cardTemplate =
 
 const cardInput = document.querySelector("#add-card-modal");
 
-// const cardTitle = document.querySelector(".card__title");
-// const cardImage = document.querySelector(".card__image");
-// const addCardForm = document.querySelector("#add-card-form");
-
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardImageInput = document.querySelector("#card-image-input");
 
@@ -76,8 +72,16 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
 }
 
-//NOTE: for me, renderCard is getCardElement
-function getCardElement(cardData) {
+function renderInitialCards(cardEl, container) {
+  container.append(cardEl);
+}
+
+function renderCard(cardEl, container) {
+  container.prepend(cardEl);
+}
+
+//I renamed this function from getCardElement to getCardView to match the video
+function getCardView(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
@@ -88,7 +92,15 @@ function getCardElement(cardData) {
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
-  cardListEl.prepend(cardElement);
+  //add event listener for delete (trash icon, .remove to make it go away)
+  //cardEl.remove();
+
+  //add event listener for image (make image open a modal and become large)
+  //open image popup-->create 3rd popup
+  // find image element inside popup
+  //replace src with card link
+  // replace alt with card title
+
   return cardElement;
 }
 //NEXT STEPS:
@@ -129,17 +141,18 @@ addCardModalCloseButton.addEventListener("click", () =>
 
 addCardModal.addEventListener("submit", (e) => {
   e.preventDefault();
-  const title = e.target.title.value;
+  const name = e.target.title.value;
   const link = e.target.link.value;
-  getCardElement({
-    name: title,
-    link: link,
+  const cardView = getCardView({
+    name,
+    link,
   });
+  renderCard(cardView, cardListEl);
   closeModal(addCardModal);
 });
 
 //initial cards
-initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-  cardListEl.append(cardElement);
+initialCards.forEach(function (cardData) {
+  const cardView = getCardView(cardData);
+  renderInitialCards(cardView, cardListEl);
 });
