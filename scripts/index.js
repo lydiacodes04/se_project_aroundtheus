@@ -92,6 +92,10 @@ function getCardView(cardData) {
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
+  // trashButton.addEventListener("click", () => {
+  //   trashButton.classList.toggle(".card__trash-button");
+  // });
+
   //add event listener for delete (trash icon, .remove to make it go away)
   //cardEl.remove();
 
@@ -104,7 +108,7 @@ function getCardView(cardData) {
   return cardElement;
 }
 //NEXT STEPS:
-//find the delete button
+
 //add the event listener to the delete button
 // cardElement.remove();
 
