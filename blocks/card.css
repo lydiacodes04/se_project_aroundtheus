@@ -55,8 +55,7 @@
   background: transparent url(../images/new-trash.svg) center no-repeat;
   width: 18px;
   height: 19.3px;
-  /* border: 0; */
-  color: #fff;
+  border: 0;
   position: absolute;
   top: 20px;
   right: 20px;

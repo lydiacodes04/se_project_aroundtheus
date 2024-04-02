@@ -25,22 +25,43 @@ const initialCards = [
   },
 ];
 
-// Wrappers
+// MODALS
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
+const previewImageModal = document.querySelector("#image-preview-modal");
 
-//BUTTONS
+//MODAL COMPONENTS
+const profileEditForm = profileEditModal.querySelector(
+  "#profile-edit-modal-form"
+);
+const cardListEl = document.querySelector(".cards__list");
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
+
+//MAIN PAGE BUTTONS
 const profileEditButton = document.querySelector(".profile__edit-button");
-
 const addNewCardButton = document.querySelector(".profile__add-button");
 
+//MODAL BUTTONS
 const profileModalCloseButton = profileEditModal.querySelector(
   "#profile-close-button"
 );
 const addCardModalCloseButton = addCardModal.querySelector(
   "#add-card-close-button"
 );
+const modalImageCloseBtn = previewImageModal.querySelector(
+  "#modal__image-close-button"
+);
 
+//TEMPLATES
+const previewImageElement = previewImageModal.querySelector(
+  ".modal__image-element"
+);
+const previewImageElementTitle = previewImageModal.querySelector(
+  ".modal__image-caption"
+);
+
+//NODES AND INPUTS
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 
@@ -48,50 +69,29 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-
-const profileEditForm = profileEditModal.querySelector(
-  "#profile-edit-modal-form"
-);
-
-const cardListEl = document.querySelector(".cards__list");
-
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-
 const cardInput = document.querySelector("#add-card-modal");
-
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardImageInput = document.querySelector("#card-image-input");
-
-const trashButton = cardTemplate.querySelector(".card__trash-button");
-
-const previewImageModal = cardTemplate.querySelector("#image-preview-modal");
 
 // FUNCTIONS
 function toggleModal(modal) {
   modal.classList.toggle("modal_opened");
 }
 
-function renderInitialCards(cardEl, container) {
-  container.append(cardEl);
-}
-
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
+
 // function deleteCard(cardElement) {
 //   cardElement.remove();
 // }
 
-function showPreview() {
-  const previewImageElement = cardTemplate.querySelector(
-    ".modal__image-preview"
-  );
+/* function showPreview(cardData) {
   previewImageElement.src = cardData.link;
   previewImageElement.alt = cardData.name;
   previewImageElement.textContent = cardData.name;
   toggleModal(previewImageModal);
-}
+} */
 
 function generateCards(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -101,16 +101,24 @@ function generateCards(cardData) {
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
+
   const likeButton = cardElement.querySelector(".card__like-button");
-  //handleLikeIcon
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
 
+  const trashButton = cardElement.querySelector(".card__trash-button");
   trashButton.addEventListener("click", () => {
-    cardData.remove();
+    console.log(cardElement);
+    cardElement.remove();
   });
-  cardImageEl.addEventListener("click", showPreview);
+
+  cardImageEl.addEventListener("click", () => {
+    previewImageElement.src = cardData.link;
+    previewImageElement.alt = cardData.name;
+    previewImageElementTitle.content = cardData.name;
+    toggleModal(previewImageModal);
+  });
 
   return cardElement;
 }
@@ -158,8 +166,12 @@ addCardModal.addEventListener("submit", (e) => {
   toggleModal(addCardModal);
 });
 
+modalImageCloseBtn.addEventListener("click", () =>
+  toggleModal(previewImageModal)
+);
+
 //initial cards
-initialCards.forEach(function (cardData) {
+initialCards.reverse().forEach(function (cardData) {
   const cardView = generateCards(cardData);
-  renderInitialCards(cardView, cardListEl);
+  renderCard(cardView, cardListEl);
 });
