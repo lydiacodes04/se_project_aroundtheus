@@ -94,7 +94,7 @@
   border-radius: 2px;
 }
 
-.modal__image-container {
+.modal__image {
   background: transparent;
   max-width: 75vw;
   max-height: 75vh;

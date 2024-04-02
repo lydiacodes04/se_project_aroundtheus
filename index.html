@@ -107,18 +107,21 @@
         </form>
       </div>
     </div>
+
     <!--                    -->
     <!-- Image Modal      -->
     <!--                    -->
 
-    <div class="modal" id="modal__image-container">
-      <button
-        id="modal__image-close-button"
-        class="modal__close"
-        type="button"
-      ></button>
-      <img class="modal__image-preview" src="" alt="" />
-      <p>Caption text/title</p>
+    <div class="modal" id="image-preview-modal">
+      <div class="modal__container">
+        <button
+          id="modal__image-close-button"
+          class="modal__close"
+          type="button"
+        ></button>
+        <img class="modal__image-preview" src="" alt="" />
+        <p>Caption text/title</p>
+      </div>
     </div>
 
     <!--                    -->
@@ -137,7 +140,7 @@
           <button
             aria-label="trash"
             class="card__trash-button"
-            type="submit"
+            type="button"
           ></button>
         </div>
       </li>

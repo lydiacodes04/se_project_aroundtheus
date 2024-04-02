@@ -25,14 +25,14 @@ const initialCards = [
   },
 ];
 
-// ELEMENTS
+// Wrappers
+const profileEditModal = document.querySelector("#profile-edit-modal");
+const addCardModal = document.querySelector("#add-card-modal");
+
+//BUTTONS
 const profileEditButton = document.querySelector(".profile__edit-button");
 
-const profileEditModal = document.querySelector("#profile-edit-modal");
-
 const addNewCardButton = document.querySelector(".profile__add-button");
-
-const addCardModal = document.querySelector("#add-card-modal");
 
 const profileModalCloseButton = profileEditModal.querySelector(
   "#profile-close-button"
@@ -65,8 +65,7 @@ const cardImageInput = document.querySelector("#card-image-input");
 
 const trashButton = cardTemplate.querySelector(".card__trash-button");
 
-const previewImageModal = cardTemplate.querySelector("#modal__image-container");
-const previewImageElement = cardTemplate.querySelector(".modal__image-preview");
+const previewImageModal = cardTemplate.querySelector("#image-preview-modal");
 
 // FUNCTIONS
 function toggleModal(modal) {
@@ -85,12 +84,19 @@ function renderCard(cardEl, container) {
 // }
 
 function showPreview() {
-  toggleModal();
+  const previewImageElement = cardTemplate.querySelector(
+    ".modal__image-preview"
+  );
+  previewImageElement.src = cardData.link;
+  previewImageElement.alt = cardData.name;
+  previewImageElement.textContent = cardData.name;
+  toggleModal(previewImageModal);
 }
 
 function generateCards(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
+
   const cardTitleEl = cardElement.querySelector(".card__title");
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
@@ -100,19 +106,11 @@ function generateCards(cardData) {
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
-  //handleDeleteCard
-  trashButton.addEventListener("click", () => deleteCard(cardElement));
 
-  //handlePreviewPicture
-  cardImageEl.addEventListener("click", function () {
-    previewImageElement.src = cardData.link;
-    previewImageElement.alt = cardData.name;
-    previewImageElement.textContent = cardData.name;
-    toggleModal(previewImageElement);
+  trashButton.addEventListener("click", () => {
+    cardData.remove();
   });
-
-  //NEXT STEPS:
-  //openModal with previewImageModal -->create 3rd popup
+  cardImageEl.addEventListener("click", showPreview);
 
   return cardElement;
 }
@@ -124,6 +122,10 @@ function handleProfileEditSubmit(e) {
   profileDescription.textContent = profileDescriptionInput.value;
   toggleModal(profileEditModal);
 }
+
+// function handleDeleteCard{
+
+// function handlePreviewPicture {}
 
 //EVENT LISTENERS
 profileEditButton.addEventListener("click", () => {
