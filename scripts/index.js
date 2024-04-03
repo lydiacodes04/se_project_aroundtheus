@@ -31,9 +31,8 @@ const addCardModal = document.querySelector("#add-card-modal");
 const previewImageModal = document.querySelector("#image-preview-modal");
 
 //MODAL COMPONENTS
-const profileEditForm = profileEditModal.querySelector(
-  "#profile-edit-modal-form"
-);
+const profileEditForm = document.querySelector("#profile-edit-modal-form");
+
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -52,6 +51,8 @@ const addCardModalCloseButton = addCardModal.querySelector(
 const modalImageCloseBtn = previewImageModal.querySelector(
   "#modal__image-close-button"
 );
+
+const closeButtons = document.querySelectorAll(".modal__close");
 
 //TEMPLATES
 const previewImageElement = previewImageModal.querySelector(
@@ -82,18 +83,7 @@ function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
 
-// function deleteCard(cardElement) {
-//   cardElement.remove();
-// }
-
-/* function showPreview(cardData) {
-  previewImageElement.src = cardData.link;
-  previewImageElement.alt = cardData.name;
-  previewImageElement.textContent = cardData.name;
-  toggleModal(previewImageModal);
-} */
-
-function generateCards(cardData) {
+function generateCard(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
 
@@ -158,12 +148,14 @@ addCardModal.addEventListener("submit", (e) => {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
-  const cardView = generateCards({
+  const cardView = generateCard({
     name,
     link,
   });
+
   renderCard(cardView, cardListEl);
   toggleModal(addCardModal);
+  e.target.reset();
 });
 
 modalImageCloseBtn.addEventListener("click", () =>
@@ -172,6 +164,6 @@ modalImageCloseBtn.addEventListener("click", () =>
 
 //initial cards
 initialCards.reverse().forEach(function (cardData) {
-  const cardView = generateCards(cardData);
+  const cardView = generateCard(cardData);
   renderCard(cardView, cardListEl);
 });
