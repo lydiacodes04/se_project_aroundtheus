@@ -99,14 +99,13 @@ function generateCard(cardData) {
 
   const trashButton = cardElement.querySelector(".card__trash-button");
   trashButton.addEventListener("click", () => {
-    console.log(cardElement);
     cardElement.remove();
   });
 
   cardImageEl.addEventListener("click", () => {
     previewImageElement.src = cardData.link;
     previewImageElement.alt = cardData.name;
-    previewImageElementTitle.content = cardData.name;
+    previewImageElementTitle.textContent = cardData.name;
     toggleModal(previewImageModal);
   });
 
@@ -120,10 +119,6 @@ function handleProfileEditSubmit(e) {
   profileDescription.textContent = profileDescriptionInput.value;
   toggleModal(profileEditModal);
 }
-
-// function handleDeleteCard{
-
-// function handlePreviewPicture {}
 
 //EVENT LISTENERS
 profileEditButton.addEventListener("click", () => {

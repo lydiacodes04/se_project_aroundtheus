@@ -1,10 +1,9 @@
 .modal {
-  /* display: none; */
+  display: flex;
   visibility: hidden;
   pointer-events: none;
   opacity: 0;
   transition: visibility 0.3s linear 0.3s, opacity 0.3s linear;
-
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +14,6 @@
 }
 
 .modal_opened {
-  display: flex;
   visibility: visible;
   pointer-events: all;
   opacity: 1;
@@ -102,6 +100,7 @@
   height: auto;
   display: flex;
   padding: 0;
+  position: relative;
 }
 
 .modal__image-element {
@@ -112,13 +111,16 @@
   height: auto;
   display: flex;
 }
-modal__image-caption {
+.modal__image-caption {
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
   line-height: 14.52px;
   text-align: left;
   color: #fff;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
 }
 
 @media screen and (max-width: 630px) {
