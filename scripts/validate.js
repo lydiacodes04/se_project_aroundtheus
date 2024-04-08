@@ -84,10 +84,14 @@ function toggleModal(modal) {
 }
 
 const modals = document.querySelector(`#${inputEl.id}-modal`);
+
+document.addEventListener("keydown",toggleModal);
+modals.addEventListener("mousedown",toggleModal);
+
 function HandleClickOutside (evt) {
   if (evt.target === evt.currentTarget) {
     toggleModal(evt.currentTarget);
   }
-profileEditModal.addEventListener("mousedown", toggleModal);
 
 };
+
