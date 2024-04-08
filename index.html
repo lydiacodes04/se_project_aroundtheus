@@ -68,6 +68,7 @@
             maxlength="40"
             required
           />
+          <span class="popup__error id="profile-title-input-error"></span>
           <input
             class="modal__input"
             type="text"
@@ -78,11 +79,11 @@
             maxlength="200"
             required
           />
-          <button class="modal__save" type="submit">Save</button>
+          <span class="popup__error id="profile-description-input-error"></span>
+          <button class="modal__save" id="profile-modal-save-button" type="submit">Save</button>
         </form>
       </div>
     </div>
-
     <!--                   -->
     <!-- Add card modal -->
     <!--                    -->
@@ -101,15 +102,22 @@
             name="title"
             id="card-title-input"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
+            required
           />
+          <span class="popup__error id="card-title-input-error"></span>
           <input
             class="modal__input modal__input_type_url"
-            type="text"
+            type="url"
             name="link"
             id="card-image-input"
             placeholder="Image link"
+            required
           />
+          <span class="popup__error id="card-image-input-error"></span>
           <button class="modal__save" type="submit">Save</button>
+
         </form>
       </div>
     </div>
