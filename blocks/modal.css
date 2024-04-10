@@ -92,6 +92,10 @@
   border-radius: 2px;
 }
 
+.modal__save_disabled {
+  opacity: 0.2;
+}
+
 .modal__container_type_image {
   background: transparent;
   max-width: 75vw;
@@ -121,6 +125,21 @@
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
+}
+
+.modal__error {
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.modal__error_visible {
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+.modal__input_type_error {
+  color: red;
+  border-bottom: 1px solid red;
 }
 
 @media screen and (max-width: 630px) {
