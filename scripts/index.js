@@ -157,12 +157,29 @@ modalImageCloseBtn.addEventListener("click", () =>
   toggleModal(previewImageModal)
 );
 
-addCardModal.addEventListener("click", () => {
-  toggleModal(addCardModal);
-});
+// This is where I am trying to get the modal to close if you click outside the modal
 
-addCardModal.addEventListener("keydown", (evt) => {
-  if (evt.key === "Esc") {
+//Attempt #1: closes at every click
+// addCardModal.addEventListener("click", () => {
+//   toggleModal(addCardModal);
+// });
+
+// Second attempt, doesn't work:
+// addCardModal.addEventListener("click", () => {
+//   if (!evt.target === addCardModal) {
+//     toggleModal(addCardModal);
+//   }
+// });
+
+// Third attempt, and it still doesn't work
+// document.addEventListener("click", () => {
+//   if (!evt.target === addCardModal) {
+//     toggleModal(addCardModal);
+//   }
+// });
+
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
     toggleModal(addCardModal);
   }
 });
