@@ -157,17 +157,15 @@ modalImageCloseBtn.addEventListener("click", () =>
   toggleModal(previewImageModal)
 );
 
-//Event Listeners for click outside form and Esc to close
-// formSelector.addEventListener("mousedown" && "click", () => {
-//   toggleModal(inputList, submitButtonSelector);
-// });
+addCardModal.addEventListener("click", () => {
+  toggleModal(addCardModal);
+});
 
-// formSelector.addEventListener("keydown", function (evt) {
-//   if (evt.key === "Esc") {
-//     closeModal();
-//     submitButtonSelector.reset();
-//   }
-// });
+addCardModal.addEventListener("keydown", (evt) => {
+  if (evt.key === "Esc") {
+    toggleModal(addCardModal);
+  }
+});
 
 //initial cards
 initialCards.reverse().forEach(function (cardData) {
