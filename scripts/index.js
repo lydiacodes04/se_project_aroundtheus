@@ -76,9 +76,7 @@ const cardImageInput = document.querySelector("#card-image-input");
 
 // FUNCTIONS
 
-// function toggleModal(modal) {
-//   modal.classList.toggle("modal_opened");
-// }
+// Refactor toggleModal(modal) to closeModal() and openModal()
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
@@ -102,22 +100,6 @@ function closeModalEscape(evt) {
     closeModal(modalOpened);
   }
 }
-
-// function closeModalListener(modal) {
-//   document.addEventListener("click", (evt) => {
-//     const isClickInsideModal = evt.target.includes(".modal__container");
-//     if (!isClickInsideModal) {
-//       toggleModal(modal);
-//     }
-//   });
-// }
-
-// document.addEventListener("keydown", (evt) => {
-//   // const modal = document.querySelector(".modal__form");
-//   if (evt.key === "Escape") {
-//     closeModal(modal);
-//   }
-// });
 
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
@@ -196,21 +178,6 @@ addCardModal.addEventListener("submit", (e) => {
 modalImageCloseBtn.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
-
-// This is where I am trying to get the modal to close if you click outside the modal
-
-// const modal = document.querySelector(".modal__form");
-
-// document.addEventListener("click", (evt) => {
-//   // console.log("evt", evt);
-//   const isClickInsideModal = modal.contains(evt.target);
-//   // console.log("isClickInsideModal", isClickInsideModal);
-//   // if (!isClickInsideModal) {
-//   //   toggleModal(modal);
-//   // }
-// });
-
-// profileEditModal, addCardModal, previewImageModal
 
 //initial cards
 initialCards.reverse().forEach(function (cardData) {
