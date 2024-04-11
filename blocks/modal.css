@@ -127,10 +127,10 @@
   left: 0;
 }
 
-.modal__error {
+/* .modal__error {
   color: red;
   border-bottom: 1px solid red;
-}
+} */
 
 .modal__error_visible {
   color: red;

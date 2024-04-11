@@ -1,5 +1,4 @@
-// The majority of this code is what I wrote following along with a video
-// The bottom is some code I attempted on my own.
+// The majority of this code is what I wrote following along with the video
 
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
@@ -10,16 +9,16 @@ function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
 function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.remove(inputErrorClass);
-  errorMessageEl.textContent = "";
   errorMessageEl.classList.remove(errorClass);
+  errorMessageEl.textContent = "";
 }
 
 function checkInputValidity(formEl, inputEl, config) {
   if (!inputEl.validity.valid) {
     return showInputError(formEl, inputEl, config);
+  } else {
+    hideInputError(formEl, inputEl, config);
   }
-
-  hideInputError(formEl, inputEl, config);
 }
 
 const disableButton = (submitButton, inactiveButtonClass) => {
@@ -71,29 +70,9 @@ const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
+  inactiveButtonClass: "modal__save_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
 
 enableValidation(config);
-
-// function closeModal(modal) {
-//   modal.classList.close("js-edit-modal");
-// }
-
-// const modals = document.querySelector(".js-edit-modal");
-
-// // document.addEventListener("keydown", (evt) => {
-// //   if ()
-// //   {closeModal}
-
-// // }
-
-// modals.addEventListener("mousedown", closeModal);
-
-// function HandleClickOutside(evt) {
-//   if (evt.target === evt.currentTarget) {
-//     toggleModal(evt.currentTarget);
-//   }
-// }
