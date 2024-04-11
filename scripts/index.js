@@ -75,18 +75,49 @@ const cardTitleInput = document.querySelector("#card-title-input");
 const cardImageInput = document.querySelector("#card-image-input");
 
 // FUNCTIONS
-function toggleModal(modal) {
-  modal.classList.toggle("modal_opened");
+
+// function toggleModal(modal) {
+//   modal.classList.toggle("modal_opened");
+// }
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
 }
 
-function closeModalListener(modal) {
-  document.addEventListener("click", (evt) => {
-    const isClickInsideModal = evt.target.includes(".modal__container");
-    if (!isClickInsideModal) {
-      toggleModal(modal);
-    }
-  });
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalEscape);
+  modal.addEventListener("mousedown", closeModalOverlay);
 }
+
+function closeModalOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+  }
+}
+
+function closeModalEscape(evt) {
+  if (evt.key === "Escape") {
+    const modalOpened = document.querySelector(".modal_opened");
+    closeModal(modalOpened);
+  }
+}
+
+// function closeModalListener(modal) {
+//   document.addEventListener("click", (evt) => {
+//     const isClickInsideModal = evt.target.includes(".modal__container");
+//     if (!isClickInsideModal) {
+//       toggleModal(modal);
+//     }
+//   });
+// }
+
+// document.addEventListener("keydown", (evt) => {
+//   // const modal = document.querySelector(".modal__form");
+//   if (evt.key === "Escape") {
+//     closeModal(modal);
+//   }
+// });
 
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
@@ -115,7 +146,7 @@ function generateCard(cardData) {
     previewImageElement.src = cardData.link;
     previewImageElement.alt = cardData.name;
     previewImageElementTitle.textContent = cardData.name;
-    toggleModal(previewImageModal);
+    openModal(previewImageModal);
   });
 
   return cardElement;
@@ -126,26 +157,26 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  toggleModal(profileEditModal);
+  closeModal(profileEditModal);
 }
 
 //EVENT LISTENERS
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  toggleModal(profileEditModal);
+  openModal(profileEditModal);
 });
 
 profileModalCloseButton.addEventListener("click", () =>
-  toggleModal(profileEditModal)
+  closeModal(profileEditModal)
 );
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
-addNewCardButton.addEventListener("click", () => toggleModal(addCardModal));
+addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 
 addCardModalCloseButton.addEventListener("click", () =>
-  toggleModal(addCardModal)
+  closeModal(addCardModal)
 );
 
 addCardModal.addEventListener("submit", (e) => {
@@ -158,20 +189,14 @@ addCardModal.addEventListener("submit", (e) => {
   });
 
   renderCard(cardView, cardListEl);
-  toggleModal(addCardModal);
+  closeModal(addCardModal);
   e.target.reset();
 });
 
 modalImageCloseBtn.addEventListener("click", () =>
-  toggleModal(previewImageModal)
+  closeModal(previewImageModal)
 );
 
-document.addEventListener("keydown", (evt) => {
-  const modal = document.querySelector(".modal__form");
-  if (evt.key === "Escape") {
-    toggleModal(modal);
-  }
-});
 // This is where I am trying to get the modal to close if you click outside the modal
 
 // const modal = document.querySelector(".modal__form");
