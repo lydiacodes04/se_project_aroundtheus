@@ -79,6 +79,15 @@ function toggleModal(modal) {
   modal.classList.toggle("modal_opened");
 }
 
+function closeModalListener(modal) {
+  document.addEventListener("click", (evt) => {
+    const isClickInsideModal = evt.target.includes(".modal__container");
+    if (!isClickInsideModal) {
+      toggleModal(modal);
+    }
+  });
+}
+
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
@@ -157,32 +166,26 @@ modalImageCloseBtn.addEventListener("click", () =>
   toggleModal(previewImageModal)
 );
 
-// This is where I am trying to get the modal to close if you click outside the modal
-
-//Attempt #1: closes at every click
-// addCardModal.addEventListener("click", () => {
-//   toggleModal(addCardModal);
-// });
-
-// Second attempt, doesn't work:
-// addCardModal.addEventListener("click", () => {
-//   if (!evt.target === addCardModal) {
-//     toggleModal(addCardModal);
-//   }
-// });
-
-// Third attempt, and it still doesn't work
-// document.addEventListener("click", () => {
-//   if (!evt.target === addCardModal) {
-//     toggleModal(addCardModal);
-//   }
-// });
-
 document.addEventListener("keydown", (evt) => {
+  const modal = document.querySelector(".modal__form");
   if (evt.key === "Escape") {
-    toggleModal(addCardModal);
+    toggleModal(modal);
   }
 });
+// This is where I am trying to get the modal to close if you click outside the modal
+
+// const modal = document.querySelector(".modal__form");
+
+// document.addEventListener("click", (evt) => {
+//   // console.log("evt", evt);
+//   const isClickInsideModal = modal.contains(evt.target);
+//   // console.log("isClickInsideModal", isClickInsideModal);
+//   // if (!isClickInsideModal) {
+//   //   toggleModal(modal);
+//   // }
+// });
+
+// profileEditModal, addCardModal, previewImageModal
 
 //initial cards
 initialCards.reverse().forEach(function (cardData) {
