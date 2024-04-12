@@ -80,6 +80,8 @@ const cardImageInput = document.querySelector("#card-image-input");
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEscape);
+  modal.removeEventListener("mousedown", closeModalOverlay);
 }
 
 function openModal(modal) {
