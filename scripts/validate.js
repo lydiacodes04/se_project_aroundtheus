@@ -13,8 +13,10 @@ function enableValidation(config) {
     formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-
-    setEventListeners(formEl, config);
+    const submitButtonSelector = document.querySelector(
+      config.submitButtonSelector
+    );
+    setEventListeners(formEl, config, submitButtonSelector);
   });
 }
 
