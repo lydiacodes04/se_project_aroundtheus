@@ -1,3 +1,25 @@
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save",
+  inactiveButtonClass: "modal__save_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+function enableValidation(config) {
+  const formEls = [...document.querySelectorAll(config.formSelector)];
+  formEls.forEach((formEl) => {
+    formEl.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+    });
+
+    setEventListeners(formEl, config);
+  });
+}
+
+enableValidation(config);
+
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.add(inputErrorClass);
@@ -55,24 +77,3 @@ function setEventListeners(formEl, config, submitButtonSelector) {
     });
   });
 }
-
-function enableValidation(config) {
-  const formEls = [...document.querySelectorAll(config.formSelector)];
-  formEls.forEach((formEl) => {
-    formEl.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
-
-    setEventListeners(formEl, config);
-  });
-}
-
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: "modal__save",
-  inactiveButtonClass: "modal__save_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
-enableValidation(config);
