@@ -160,14 +160,14 @@
   .modal__heading {
     width: 238px;
     font-size: 18px;
-    line-height: 22px;
+    line-height: 21.78px;
     margin: 0 0 76px;
   }
   .modal__form {
     width: 238px;
   }
   .modal__input {
-    width: auto;
+    width: 95%;
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;

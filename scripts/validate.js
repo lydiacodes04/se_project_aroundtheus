@@ -13,7 +13,7 @@ function enableValidation(config) {
     formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
-    const submitButtonSelector = document.querySelector(
+    const submitButtonSelector = formEl.querySelector(
       config.submitButtonSelector
     );
     setEventListeners(formEl, config, submitButtonSelector);
@@ -21,6 +21,8 @@ function enableValidation(config) {
 }
 
 enableValidation(config);
+
+// const inactiveButtonClass = config.inactiveButtonClass;
 
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
@@ -49,7 +51,7 @@ const disableButton = (submitButtonSelector, inactiveButtonClass) => {
 };
 
 const enableButton = (submitButtonSelector, inactiveButtonClass) => {
-  submitButtonSelector.remove(config.inactiveButtonClass);
+  submitButtonSelector.classList.remove(inactiveButtonClass);
   submitButtonSelector.disabled = false;
 };
 
