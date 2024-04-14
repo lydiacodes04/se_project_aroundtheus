@@ -170,7 +170,7 @@ addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
 
-addCardModal.addEventListener("submit", (e) => {
+addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
