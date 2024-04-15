@@ -10,7 +10,7 @@
 **Intro**
 This project was my first attempt to create a responsive website. As a Triple Ten Bootcamp student, I was charged with replicating the following Figma design: [Figma project design](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
-The instructors provided us with videos assisting us in the basic structure of the project, but they provided us with no written code. We had to write all the HTML and CSS ourselves. In addition, the details of the responsive design were also up to us to construct.
+The instructors provided us with videos assisting us in the basic structure of the project, but they provided us with no written code. We had to write all the HTML, CSS, and JavaScript ourselves. In addition, the details of the responsive design were also up to us to construct.
 
 **Project**
 Here is a link to my project: [Around the U.S. Project](https://lydiacodes04.github.io/se_project_aroundtheus/)
