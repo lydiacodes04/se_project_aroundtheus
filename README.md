@@ -25,6 +25,4 @@ I created a video describing the project's features. You can view it here:
 [Link to my video: Project 3 demo](https://drive.google.com/file/d/1IMFnQz4o8_h3-tnFMQuBl8rgOnsdqzyf/view?usp=drive_link/)
 
 **Plans for improvement**
-My plans for improving the project include making it more interactive. I would like for users to be able to see other users' profiles and for users to be able to comment on each others' pictures. In addition, I mentioned a few minor adjustments I would like to make in order for the responsiveness of the sight to be enhanced.
-
-A technical area of improvement would be to consolidate all the close buttons under one universal handler using a forEach loop and an event listener.
+My plans for improving the project include making it increasingly more interactive. I would like for users to be able to see other users' profiles and for users to be able to comment on each others' pictures. 
