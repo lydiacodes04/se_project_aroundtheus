@@ -112,35 +112,6 @@ function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
 
-// function generateCard(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector(".card__image");
-
-//   const cardTitleEl = cardElement.querySelector(".card__title");
-//   cardImageEl.src = cardData.link;
-//   cardImageEl.alt = cardData.name;
-//   cardTitleEl.textContent = cardData.name;
-
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__like-button_active");
-//   });
-
-//   const trashButton = cardElement.querySelector(".card__trash-button");
-//   trashButton.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-
-//   cardImageEl.addEventListener("click", () => {
-//     previewImageElement.src = cardData.link;
-//     previewImageElement.alt = cardData.name;
-//     previewImageElementTitle.textContent = cardData.name;
-//     openModal(previewImageModal);
-//   });
-
-//   return cardElement;
-// }
-
 function handleImageClick(data) {
   previewImageElement.src = data.link;
   previewImageElement.alt = data.name;

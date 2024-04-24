@@ -1,8 +1,3 @@
-// export const data {
-//     this._name = name;
-//     this.link = link;
-// }
-
 export default class Card {
   constructor(data, cardSelector, handleImageClick) {
     this.name = data.name;
