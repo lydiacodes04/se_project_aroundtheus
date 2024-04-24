@@ -8,14 +8,12 @@ export default class Card {
   }
 
   _setEventListeners() {
-    // ".card__like-button"
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
         this._handleLikeIcon();
       });
 
-    //".card__trash-button"
     this._cardElement
       .querySelector(".card__trash-button")
       .addEventListener("click", () => {
@@ -43,14 +41,12 @@ export default class Card {
       .content.querySelector(".card")
       .cloneNode(true);
 
-    //get the card view (hint: generateCard function does a lot of this)
-
     this._cardTitleEl = this._cardElement.querySelector(".card__title");
     this._cardImageEl = this._cardElement.querySelector(".card__image");
     this._cardImageEl.src = this.link;
     this._cardImageEl.alt = this.name;
     this._cardTitleEl.textContent = this.name;
-    // set event listeners
+
     this._setEventListeners();
     return this._cardElement;
   }

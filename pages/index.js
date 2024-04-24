@@ -1,7 +1,17 @@
-// import data from "../components/Card.js";
 import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save",
+  inactiveButtonClass: "modal__save_disabled",
+};
+
+const formInputEl = document.querySelector(".modal__input");
 
 const cardSelector = "#card-template";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
