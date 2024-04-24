@@ -29,17 +29,6 @@ const initialCards = [
   },
 ];
 
-// this was done in the video, only one card:
-// const cardData = {
-//   name: "Yosemite Valley",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-// };
-
-// const data = { name, link };
-
-// const card = new Card(cardData, "card-template");
-// card.getView();
-
 // MODALS
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
