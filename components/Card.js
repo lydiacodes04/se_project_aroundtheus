@@ -1,8 +1,15 @@
+// export const data {
+//     this._name = name;
+//     this.link = link;
+// }
+
 export default class Card {
-  constructor({ name, link }, cardSelector) {
-    this._name = name;
-    this._link = link;
+  constructor(data, cardSelector, handleImageClick) {
+    this.name = data.name;
+    this.link = data.link;
+
     this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
   }
 
   _setEventListeners() {
@@ -19,6 +26,10 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleDeleteCard();
       });
+
+    this._cardImageEl.addEventListener("click", () => {
+      this._handleImageClick(this);
+    });
   }
 
   _handleLikeIcon() {
@@ -38,8 +49,14 @@ export default class Card {
       .cloneNode(true);
 
     //get the card view (hint: generateCard function does a lot of this)
-    //set event listeners
+
+    this._cardTitleEl = this._cardElement.querySelector(".card__title");
+    this._cardImageEl = this._cardElement.querySelector(".card__image");
+    this._cardImageEl.src = this.link;
+    this._cardImageEl.alt = this.name;
+    this._cardTitleEl.textContent = this.name;
+    // set event listeners
     this._setEventListeners();
-    //return the card
+    return this._cardElement;
   }
 }
