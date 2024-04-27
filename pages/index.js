@@ -166,11 +166,9 @@ addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
-  const cardView = generateCard({
-    name,
-    link,
-  });
-
+  const cardData = { name, link };
+  const newCard = new Card(cardData, cardSelector, handleImageClick);
+  const cardView = newCard.getView();
   renderCard(cardView, cardListEl);
   closeModal(addCardModal);
   e.target.reset();
