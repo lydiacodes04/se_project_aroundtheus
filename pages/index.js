@@ -172,6 +172,7 @@ addCardForm.addEventListener("submit", (e) => {
   renderCard(cardView, cardListEl);
   closeModal(addCardModal);
   e.target.reset();
+  toggleButtonState();
 });
 
 modalImageCloseBtn.addEventListener("click", () =>
@@ -180,9 +181,8 @@ modalImageCloseBtn.addEventListener("click", () =>
 
 //initial cards
 initialCards.reverse().forEach(function (cardData) {
-  // const cardView = generateCard(cardData);
-  const currentCard = new Card(cardData, cardSelector, handleImageClick);
-  const cardView = currentCard.getView();
+  const createCard = new Card(cardData, cardSelector, handleImageClick);
+  const cardView = createCard.getView();
   renderCard(cardView, cardListEl);
 });
 
