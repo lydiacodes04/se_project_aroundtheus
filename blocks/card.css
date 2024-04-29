@@ -11,6 +11,9 @@
   width: 282px;
   height: 282px;
 }
+.card__image:hover {
+  cursor: pointer;
+}
 
 .card__description {
   display: flex;
@@ -49,6 +52,7 @@
 
 .card__like-button:hover {
   opacity: 50%;
+  cursor: pointer;
 }
 
 .card__trash-button {
@@ -59,4 +63,8 @@
   position: absolute;
   top: 20px;
   right: 20px;
+}
+
+.card__trash-button:hover {
+  cursor: pointer;
 }
