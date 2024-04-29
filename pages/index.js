@@ -167,12 +167,10 @@ addCardForm.addEventListener("submit", (e) => {
   const name = e.target.title.value;
   const link = e.target.link.value;
   const cardData = { name, link };
-  const newCard = new Card(cardData, cardSelector, handleImageClick);
-  const cardView = newCard.getView();
-  renderCard(cardView, cardListEl);
+  const viewCard = createCard(cardData);
+  renderCard(viewCard, cardListEl);
   closeModal(addCardModal);
   e.target.reset();
-  // toggleButtonState();
 });
 
 modalImageCloseBtn.addEventListener("click", () =>

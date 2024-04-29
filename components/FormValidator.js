@@ -9,7 +9,6 @@ export default class FormValidator {
     this._formEl = formEl;
     this._inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
     this._submitButton = this._formEl.querySelector(this._submitButtonSelector);
-    // this._inputEls = this._formEl.Array.from(this._inputSelector);
   }
 
   _showInputError(inputEl) {
@@ -73,15 +72,9 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._formEls = [...document.querySelector(this._formSelector)];
-    this._formEls.forEach((formEl) => {
-      formEl.addEventListener("submit", (evt) => {
-        evt.preventDefault();
-      });
-      this._setEventListeners();
+    this._formEl.addEventListener("submit", (evt) => {
+      evt.preventDefault();
     });
+    this._setEventListeners();
   }
 }
-
-// if card form submitted successfully, clear form fields and (reset) disable submit button
-// if closed before successful submit, leave the form fields as they are, so as to prevent lost data.
