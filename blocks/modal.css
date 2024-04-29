@@ -83,6 +83,10 @@
   border-right: 0;
 }
 
+.modal__input:hover {
+  cursor: pointer;
+}
+
 .modal__save {
   font-family: Inter;
   font-size: 18px;
@@ -93,6 +97,10 @@
   background-color: #000;
   min-height: 50px;
   border-radius: 2px;
+}
+
+.modal__save:hover {
+  cursor: pointer;
 }
 
 .modal__save_disabled {
