@@ -179,11 +179,13 @@ modalImageCloseBtn.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
 
-//initial cards
-initialCards.reverse().forEach(function (cardData) {
-  // const cardView = generateCard(cardData);
-  const currentCard = new Card(cardData, cardSelector, handleImageClick);
-  const cardView = currentCard.getView();
+const createCard = (cardData) => {
+  const card = new Card(cardData, cardSelector, handleImageClick);
+  return card.getView();
+};
+
+initialCards.reverse().forEach((cardData) => {
+  const cardView = createCard(cardData);
   renderCard(cardView, cardListEl);
 });
 
