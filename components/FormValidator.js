@@ -8,6 +8,7 @@ export default class FormValidator {
     this._errorClass = config.errorClass;
     this._formEl = formEl;
     this._inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
+    // this._inputEls = this._formEl.Array.from(this._inputSelector);
   }
 
   _showInputError(inputEl) {
@@ -25,13 +26,13 @@ export default class FormValidator {
   }
 
   _checkInputValidity(inputEl) {
-    // this._inputEls.forEach((inputEl) => {
-    //   inputEl.addEventListener("input", (event) =>
-    //     this._checkInputValidity(event.target)
-    //   );
-    // });
+    this._inputEls.forEach((inputEl) => {
+      inputEl.addEventListener("input", (event) =>
+        this._checkInputValidity(event.target)
+      );
+    });
     if (!inputEl.validity.valid) {
-      return this._showInputError(inputEl);
+      this._showInputError(inputEl);
     } else {
       this._hideInputError(inputEl);
     }
@@ -65,7 +66,8 @@ export default class FormValidator {
 
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (evt) => {
-        this._checkInputValidity(this._formEl, inputEl, this._config);
+        this._checkInputValidity(inputEl);
+        this.toggleButtonState();
       });
     });
   }
