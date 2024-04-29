@@ -101,10 +101,12 @@
 
 .modal__save:hover {
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .modal__save_disabled {
   opacity: 0.2;
+  cursor: default;
 }
 
 .modal__container_type_image {
