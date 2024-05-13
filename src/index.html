@@ -6,7 +6,7 @@
     <meta name="author" content="Lydia Lockhart" />
     <meta name="description" content="demo travel photos site" />
     <meta name="keywords" content="travel, travel photos, demo website" />
-    <link rel="stylesheet" href="pages/index.css" />
+    <!-- <link rel="stylesheet" href="pages/index.css" /> -->
     <link rel="icon" href="./images/favicon.ico" />
     <title>Around the U.S.</title>
   </head>
@@ -15,13 +15,17 @@
       <header class="header page__section">
         <img
           class="header__logo"
-          src="./images/around-logo.svg"
+          src="<%=require('./images/around-logo.svg')%>"
           alt="Around the U.S. Logo"
         />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img src="./images/Avatar.jpg" alt="Avatar" class="profile__image" />
+          <img
+            src="<%=require('./images/Avatar.jpg')%>"
+            alt="Avatar"
+            class="profile__image"
+          />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -175,6 +179,6 @@
       </li>
     </template>
 
-    <script defer src="./pages/index.js" type="module"></script>
+    <!-- <script defer src="./pages/index.js" type="module"></script> -->
   </body>
 </html>
