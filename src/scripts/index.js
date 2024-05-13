@@ -1,6 +1,6 @@
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidator.js";
-import "./pages/index.css";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import "../pages/index.css";
 
 const config = {
   formSelector: ".modal__form",
@@ -189,3 +189,12 @@ profileEditFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
+
+const newCardPopup = new PopupWithForm("#add-card-modal", () => {});
+newCardPopup.open();
+newCardPopup.close();
+
+const popupImage = new PopupWithImage(data);
+
+//Create one instance of this class in index.js
+//call its parent’s setEventListeners() method.
