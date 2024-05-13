@@ -187,10 +187,14 @@ const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
 
 const newCardPopup = new PopupWithForm("#add-card-modal", () => {});
-newCardPopup.open();
-newCardPopup.close();
+// newCardPopup.open();
+// newCardPopup.close();
+setEventListeners();
+
+const editProfilePopup = new PopupWithForm("#profile-edit-modal", () => {});
+// editProfilePopup.open();
+// editProfilePopup.close();
+setEventListeners();
 
 const popupImage = new PopupWithImage(data);
-
-//Create one instance of this class in index.js
-//call its parent’s setEventListeners() method.
+popupImage.setEventListeners();
