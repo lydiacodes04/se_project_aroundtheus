@@ -94,68 +94,68 @@ const cardImageInput = document.querySelector("#card-image-input");
 
 // Refactor toggleModal(modal) to close() and open()
 
-function close(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalEscape);
-  modal.removeEventListener("mousedown", closeModalOverlay);
-}
+// function close(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keydown", closeModalEscape);
+//   modal.removeEventListener("mousedown", closeModalOverlay);
+// }
 
-function open(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalEscape);
-  modal.addEventListener("mousedown", closeModalOverlay);
-}
+// function open(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keydown", closeModalEscape);
+//   modal.addEventListener("mousedown", closeModalOverlay);
+// }
 
-function closeModalOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
-    close(evt.currentTarget);
-  }
-}
+// function closeModalOverlay(evt) {
+//   if (evt.target === evt.currentTarget) {
+//     close(evt.currentTarget);
+//   }
+// }
 
-function closeModalEscape(evt) {
-  if (evt.key === "Escape") {
-    const modalOpened = document.querySelector(".modal_opened");
-    close(modalOpened);
-  }
-}
+// function closeModalEscape(evt) {
+//   if (evt.key === "Escape") {
+//     const modalOpened = document.querySelector(".modal_opened");
+//     close(modalOpened);
+//   }
+// }
 
-function renderCard(cardEl, container) {
+export function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
 
-function handleImageClick(data) {
-  previewImageElement.src = data.link;
-  previewImageElement.alt = data.name;
-  previewImageElementTitle.textContent = data.name;
-  open(previewImageModal);
-}
+// function handleImageClick(data) {
+//   previewImageElement.src = data.link;
+//   previewImageElement.alt = data.name;
+//   previewImageElementTitle.textContent = data.name;
+//   open(previewImageModal);
+// }
 
 //EVENT HANDLERS
-function handleProfileEditSubmit(e) {
-  e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  close(profileEditModal);
-}
+// function handleProfileEditSubmit(e) {
+//   e.preventDefault();
+//   profileTitle.textContent = profileTitleInput.value;
+//   profileDescription.textContent = profileDescriptionInput.value;
+//   close(profileEditModal);
+// }
 
 //EVENT LISTENERS
-profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-  open(profileEditModal);
-});
+// profileEditButton.addEventListener("click", () => {
+//   profileTitleInput.value = profileTitle.textContent;
+//   profileDescriptionInput.value = profileDescription.textContent;
+//   open(profileEditModal);
+// });
 
-profileModalCloseButton.addEventListener("click", () =>
-  close(profileEditModal)
-);
+// profileModalCloseButton.addEventListener("click", () =>
+//   close(profileEditModal)
+// );
 
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+// profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
-addNewCardButton.addEventListener("click", () => {
-  open(addCardModal);
-});
+// addNewCardButton.addEventListener("click", () => {
+//   open(addCardModal);
+// });
 
-addCardModalCloseButton.addEventListener("click", () => close(addCardModal));
+// addCardModalCloseButton.addEventListener("click", () => close(addCardModal));
 
 addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -168,9 +168,9 @@ addCardForm.addEventListener("submit", (e) => {
   e.target.reset();
 });
 
-modalImageCloseBtn.addEventListener("click", () => close(previewImageModal));
+// modalImageCloseBtn.addEventListener("click", () => close(previewImageModal));
 
-const createCard = (cardData) => {
+export const createCard = (cardData) => {
   const card = new Card(cardData, cardSelector, handleImageClick);
   return card.getView();
 };
@@ -179,6 +179,8 @@ initialCards.reverse().forEach((cardData) => {
   const cardView = createCard(cardData);
   renderCard(cardView, cardListEl);
 });
+
+//instantiations
 
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
