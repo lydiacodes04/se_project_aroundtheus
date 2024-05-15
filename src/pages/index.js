@@ -2,7 +2,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
 
-const config = {
+export const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save",
@@ -123,6 +123,7 @@ export function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
 
+//EVENT HANDLERS
 // function handleImageClick(data) {
 //   previewImageElement.src = data.link;
 //   previewImageElement.alt = data.name;
@@ -130,7 +131,6 @@ export function renderCard(cardEl, container) {
 //   open(previewImageModal);
 // }
 
-//EVENT HANDLERS
 // function handleProfileEditSubmit(e) {
 //   e.preventDefault();
 //   profileTitle.textContent = profileTitleInput.value;
@@ -157,6 +157,7 @@ export function renderCard(cardEl, container) {
 
 // addCardModalCloseButton.addEventListener("click", () => close(addCardModal));
 
+const handleFormSubmit = {};
 addCardForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const name = e.target.title.value;
@@ -175,10 +176,10 @@ export const createCard = (cardData) => {
   return card.getView();
 };
 
-initialCards.reverse().forEach((cardData) => {
-  const cardView = createCard(cardData);
-  renderCard(cardView, cardListEl);
-});
+// initialCards.reverse().forEach((cardData) => {
+//   const cardView = createCard(cardData);
+//   renderCard(cardView, cardListEl);
+// });
 
 //instantiations
 
