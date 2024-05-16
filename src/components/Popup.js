@@ -1,16 +1,14 @@
-import { config } from "../pages/index.js";
-
 export default class Popup {
-  constructor({ formSelector }) {
-    this._formElement = document.querySelector(formSelector);
+  constructor({ popupSelector }) {
+    this._popupElement = document.querySelector(popupSelector);
   }
 
   open() {
-    this._formElement.classList.add("modal_opened");
+    this._popupElement.classList.add("modal_opened");
   }
 
   close() {
-    this._formElement.classList.remove("modal_opened");
+    this._popupElement.classList.remove("modal_opened");
   }
 
   _handleEscClose(evt) {
@@ -20,13 +18,13 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._closeButton = this._formElement.querySelector(".modal__close");
+    this._closeButton = this._popupElement.querySelector(".modal__close");
     this._closeButton.addEventListener("click", close);
 
     this._evt.target = evt.currentTarget;
     this._evt.target.addEventListener("click", close);
 
     this.setEventListeners();
-    return this._formElement;
+    return this._popupElement;
   }
 }

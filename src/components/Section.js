@@ -1,26 +1,21 @@
-import { renderCard, createCard } from "../pages/index.js";
-
-export class Section {
-  constructor({ items: cardData, renderer: renderCard }, classSelector) {
-    this._items = cardData;
+export default class Section {
+  constructor({ items, renderer }, classSelector) {
+    this._items = items;
     // items is an array of data
-    this._renderer = renderCard;
+    this._renderer = renderer;
     //renderer is a function that creates and adds a single item to the page
+    this._container = document.querySelector(classSelector);
   }
 
   renderItems() {
-    this._createCard(cardData);
-    //renders all elements on the page
-    //iterates through the items array and call the renderer() function on each item.
-    // This method should be called once on page load.
+    this._items.reverse().forEach((item) => {
+      this._renderer(item);
+    });
   }
 
-  addItem() {
+  addItem(item) {
+    this._container.prepend(item);
     //takes a DOM element and adds it to the container.
     //This method should be called when adding an individual card to the DOM.
-    initialCards.reverse().forEach((cardData) => {
-      const cardView = createCard(cardData);
-      renderCard(cardView, cardListEl);
-    });
   }
 }
