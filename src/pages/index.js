@@ -1,9 +1,15 @@
+// import * as constants from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
 import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+// import PopupWithForm from "../components/PopupWithForm.js";
+// import PopupWithImage from "../components/PopupWithImage.js"
 
-export const config = {
+// FUNCTIONS
+
+const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save",
@@ -91,34 +97,32 @@ const cardInput = document.querySelector("#add-card-modal");
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardImageInput = document.querySelector("#card-image-input");
 
-// FUNCTIONS;
-
 // Refactor toggleModal(modal) to close() and open()
 
-// function close(modal) {
-//   modal.classList.remove("modal_opened");
-//   document.removeEventListener("keydown", closeModalEscape);
-//   modal.removeEventListener("mousedown", closeModalOverlay);
-// }
+function close(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEscape);
+  modal.removeEventListener("mousedown", closeModalOverlay);
+}
 
-// function open(modal) {
-//   modal.classList.add("modal_opened");
-//   document.addEventListener("keydown", closeModalEscape);
-//   modal.addEventListener("mousedown", closeModalOverlay);
-// }
+function open(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalEscape);
+  modal.addEventListener("mousedown", closeModalOverlay);
+}
 
-// function closeModalOverlay(evt) {
-//   if (evt.target === evt.currentTarget) {
-//     close(evt.currentTarget);
-//   }
-// }
+function closeModalOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    close(evt.currentTarget);
+  }
+}
 
-// function closeModalEscape(evt) {
-//   if (evt.key === "Escape") {
-//     const modalOpened = document.querySelector(".modal_opened");
-//     close(modalOpened);
-//   }
-// }
+function closeModalEscape(evt) {
+  if (evt.key === "Escape") {
+    const modalOpened = document.querySelector(".modal_opened");
+    close(modalOpened);
+  }
+}
 
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
@@ -184,26 +188,12 @@ const createCard = (cardData) => {
 //   renderCard(cardView, cardListEl);
 // });
 
-//instantiations
-
+//instantiations of formValidator
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
-
-// const newCardPopup = new PopupWithForm("#add-card-modal", () => {});
-// // newCardPopup.open();
-// // newCardPopup.close();
-// setEventListeners();
-
-// const editProfilePopup = new PopupWithForm("#profile-edit-modal", () => {});
-// // editProfilePopup.open();
-// // editProfilePopup.close();
-// setEventListeners();
-
-// const popupImage = new PopupWithImage(data);
-// popupImage.setEventListeners();
 
 const layerSection = new Section(
   { items: initialCards, renderer: createCard },
@@ -212,3 +202,15 @@ const layerSection = new Section(
 layerSection.renderItems();
 
 //calls createCard and renderCard
+// const newCardPopup = new PopupWithForm("#add-card-modal", handleFormSubmit);
+// // newCardPopup.open();
+// // newCardPopup.close();
+// newCardPopup.setEventListeners();
+
+// const editProfilePopup = new PopupWithForm("#profile-edit-modal", () => {});
+// // editProfilePopup.open();
+// // editProfilePopup.close();
+// setEventListeners();
+
+// const popupImage = new PopupWithImage(data);
+// popupImage.setEventListeners();
