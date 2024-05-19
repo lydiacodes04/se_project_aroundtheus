@@ -37,9 +37,9 @@ export const initialCards = [
 ];
 
 // // MODALS
-// export const profileEditModal = document.querySelector("#profile-edit-modal");
-// export const addCardModal = document.querySelector("#add-card-modal");
-// export const previewImageModal = document.querySelector("#image-preview-modal");
+export const profileEditModal = document.querySelector("#profile-edit-modal");
+export const addCardModal = document.querySelector("#add-card-modal");
+export const previewImageModal = document.querySelector("#image-preview-modal");
 
 // //MODAL COMPONENTS
 // export const profileEditForm = document.querySelector(
@@ -47,15 +47,15 @@ export const initialCards = [
 // );
 // export const addCardForm = document.querySelector("#add-card-form");
 
-// export const cardListEl = document.querySelector(".cards__list");
+export const cardListEl = document.querySelector(".cards__list");
 // export const cardTemplate =
 //   document.querySelector("#card-template").content.firstElementChild;
 
 // //MAIN PAGE BUTTONS
-// export const profileEditButton = document.querySelector(
-//   ".profile__edit-button"
-// );
-// const addNewCardButton = document.querySelector(".profile__add-button");
+export const profileEditButton = document.querySelector(
+  ".profile__edit-button"
+);
+const addNewCardButton = document.querySelector(".profile__add-button");
 
 // //MODAL BUTTONS
 // export const profileModalCloseButton = profileEditModal.querySelector(
@@ -71,12 +71,12 @@ export const initialCards = [
 // export const closeButtons = document.querySelectorAll(".modal__close");
 
 // //TEMPLATES
-// export const previewImageElement = previewImageModal.querySelector(
-//   ".modal__image-element"
-// );
-// export const previewImageElementTitle = previewImageModal.querySelector(
-//   ".modal__image-caption"
-// );
+export const previewImageElement = previewImageModal.querySelector(
+  ".modal__image-element"
+);
+export const previewImageElementTitle = previewImageModal.querySelector(
+  ".modal__image-caption"
+);
 
 // //NODES AND INPUTS
 // export const profileTitle = document.querySelector(".profile__title");
@@ -88,6 +88,7 @@ export const initialCards = [
 // export const profileDescriptionInput = document.querySelector(
 //   "#profile-description-input"
 // );
+
 // export const cardInput = document.querySelector("#add-card-modal");
 // export const cardTitleInput = document.querySelector("#card-title-input");
 // export const cardImageInput = document.querySelector("#card-image-input");
