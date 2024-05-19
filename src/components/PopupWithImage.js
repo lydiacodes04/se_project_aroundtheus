@@ -1,17 +1,15 @@
 import Popup from "./Popup.js";
 
 class PopupWithImage extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
-    super({ popupSelector });
-    this._popupForm = this._popupElement.querySelector(".modal__form");
-    this._handleFormSubmit = handleFormSubmit;
+  constructor({ data }) {
+    this._popupElement = document.querySelector(popupSelector);
   }
 
   // data should be an object containing the name and link
   open(data) {
-    this._src = data.link;
-    this._alt = data.name;
-    this._textContent = data.name;
+    this._image.src = data.link;
+    this._image.alt = data.name;
+    this._image.textContent = data.name;
     super.open();
   }
 }
