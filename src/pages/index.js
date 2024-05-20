@@ -83,10 +83,7 @@ const profileDescriptionInput = document.querySelector(
 
 //EVENT HANDLERS
 function handleImageClick(data) {
-  previewImageElement.src = data.link;
-  previewImageElement.alt = data.name;
-  previewImageElementTitle.textContent = data.name;
-  previewImageModal.open();
+  popupImage.open(data);
 }
 
 function handleProfileEditSubmit(e) {
