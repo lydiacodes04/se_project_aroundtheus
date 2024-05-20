@@ -110,8 +110,6 @@ addNewCardButton.addEventListener("click", () => {
   addCardModal.open();
 });
 
-// addCardModalCloseButton.addEventListener("click", () => close(addCardModal));
-
 const handleFormSubmit = (e) => {
   e.preventDefault();
   const name = e.target.title.value;
