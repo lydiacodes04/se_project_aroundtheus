@@ -12,7 +12,6 @@ export default class PopupWithImage extends Popup {
     );
   }
 
-  // data should be an object containing the name and link
   open(data) {
     this._previewImageElement.src = data.link;
     this._previewImageElement.alt = data.name;

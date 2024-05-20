@@ -22,7 +22,7 @@ export default class PopupWithForm extends Popup {
     //key needs to be input Elements name attribute
     //return
 
-    handleProfileEditSubmit(this._inputValues);
+    handleProfileEditSubmit(this._inputElements);
   }
 
   setEventListeners() {

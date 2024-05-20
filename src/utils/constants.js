@@ -33,35 +33,3 @@ export const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-
-// //MODAL COMPONENTS
-// export const profileEditForm = document.querySelector(
-//   "#profile-edit-modal-form"
-// );
-// export const addCardForm = document.querySelector("#add-card-form");
-
-// export const cardTemplate =
-//   document.querySelector("#card-template").content.firstElementChild;
-
-// //MAIN PAGE BUTTONS
-
-// //MODAL BUTTONS
-
-//CLOSE BUTTONS
-// export const profileModalCloseButton = profileEditModal.querySelector(
-//   "#profile-close-button"
-// );
-// export const addCardModalCloseButton = addCardModal.querySelector(
-//   "#add-card-close-button"
-// );
-// export const modalImageCloseBtn = previewImageModal.querySelector(
-//   "#modal__image-close-button"
-// );
-
-// export const closeButtons = document.querySelectorAll(".modal__close");
-
-// //NODES AND INPUTS
-
-// export const cardInput = document.querySelector("#add-card-modal");
-// export const cardTitleInput = document.querySelector("#card-title-input");
-// export const cardImageInput = document.querySelector("#card-image-input");
