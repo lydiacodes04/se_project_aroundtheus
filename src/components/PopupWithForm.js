@@ -20,15 +20,6 @@ export default class PopupWithForm extends Popup {
       inputValues[inputEl.name] = inputEl.value;
     });
     return inputValues;
-    //collects data from all the input fields and returns it as an object.
-    // "#profile-title-input", "#profile-description-input", "#card-title-input","#card-image-input"
-    //passes data to the submission handler as an argument.
-
-    //create object, iterate through input elements for each input element, assign a key-value pair to the obj
-    //key needs to be input Elements name attribute
-    //return
-
-    // handleProfileEditSubmit(this._inputElements);
   }
 
   setEventListeners() {
