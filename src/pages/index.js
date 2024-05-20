@@ -32,14 +32,13 @@ const previewImageElement = previewImageModal.querySelector(
 const previewImageElementTitle = previewImageModal.querySelector(
   ".modal__image-caption"
 );
-const data = { previewImageElement, previewImageElementTitle };
 
 //NODES AND INPUTS
 //PROFILE TITLE/DESCRIPTION
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 
-const user = { profileTitle, profileDescription };
+// const user = { profileTitle, profileDescription };
 
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
@@ -55,31 +54,25 @@ function handleImageClick(data) {
   popupImage.open(data);
 }
 
-function handleProfileEditSubmit(e) {
-  e.preventDefault();
-  // profileTitle.textContent = profileTitleInput.value;
-  // profileDescription.textContent = profileDescriptionInput.value;
-  userInfoPopup.close();
+function handleProfileEditSubmit(inputValues) {
+  userInfo.setUserInfo(inputValues.title, inputValues.description);
+  profileEditPopup.close();
 }
 
 // //EVENT LISTENERS
 profileEditButton.addEventListener("click", () => {
-  //   // profileTitleInput.value = profileTitle.textContent;
-  //   // profileDescriptionInput.value = profileDescription.textContent;
-  userInfoPopup.open();
+  const data = userInfo.getUserInfo();
+  profileTitleInput.value = data.title;
+  profileDescriptionInput.value = data.job;
+  //use name and about
+  profileEditPopup.open();
 });
-
-// profileModalCloseButton.addEventListener("click", () =>
-//   profileEditModal.close()
-// );
-
-// profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
-const handleFormSubmit = (e) => {
+const handleAddCardFormSubmit = (e) => {
   e.preventDefault();
   const name = e.target.title.value;
   const link = e.target.link.value;
@@ -113,17 +106,22 @@ const layerSection = new Section(
 );
 layerSection.renderItems();
 
-const popupImage = new PopupWithImage("#image-preview-modal", data);
+const popupImage = new PopupWithImage("#image-preview-modal", {
+  previewImageElement,
+  previewImageElementTitle,
+});
 popupImage.setEventListeners();
 
-const newCardPopup = new PopupWithForm("#add-card-modal", handleFormSubmit);
+const newCardPopup = new PopupWithForm(
+  "#add-card-modal",
+  handleAddCardFormSubmit
+);
 newCardPopup.setEventListeners();
 
-// const userInfoPopup = new UserInfo("#profile-edit-modal", () => {});
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
-const userInfoPopup = new UserInfo("#profile-edit-modal", {
-  profileTitle,
-  profileDescription,
-});
-userInfoPopup.getUserInfo();
-userInfoPopup.setUserInfo();
+const profileEditPopup = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileEditSubmit
+);
+profileEditPopup.setEventListeners();

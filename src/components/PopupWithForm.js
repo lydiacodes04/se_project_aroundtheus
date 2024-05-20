@@ -14,6 +14,12 @@ export default class PopupWithForm extends Popup {
 
   _getInputValues() {
     this._inputElements = this._popupForm.querySelectorAll(".modal__input");
+    const inputValues = {};
+
+    this._inputElements.forEach((inputEl) => {
+      inputValues[inputEl.name] = inputEl.value;
+    });
+    return inputValues;
     //collects data from all the input fields and returns it as an object.
     // "#profile-title-input", "#profile-description-input", "#card-title-input","#card-image-input"
     //passes data to the submission handler as an argument.
@@ -22,12 +28,12 @@ export default class PopupWithForm extends Popup {
     //key needs to be input Elements name attribute
     //return
 
-    handleProfileEditSubmit(this._inputElements);
+    // handleProfileEditSubmit(this._inputElements);
   }
 
   setEventListeners() {
     this._popupForm.addEventListener("submit", () => {
-      this.handleFormSubmit(this._getInputValues());
+      this._handleFormSubmit(this._getInputValues());
     });
     super.setEventListeners();
   }

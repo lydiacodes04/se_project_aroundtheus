@@ -1,22 +1,20 @@
 export default class UserInfo {
-  constructor(profileEditForm, { name, job }) {
-    this._name = name;
-    this._job = job;
-    this._profileEditForm = profileEditForm;
+  constructor(name, job) {
+    this._name = document.querySelector(name);
+    this._job = document.querySelector(job);
   }
 
   getUserInfo() {
-    this._name.textContent = profileTitleInput.value;
-    this._job.textContent = profileDescriptionInput.value;
+    return {
+      name: this._name.textContent,
+      job: this._job.textContent,
+    };
   }
 
-  setUserInfo(evt) {
+  setUserInfo(name, job) {
     // takes new user data and adds it to the page.
     // This method should be used after successful submission of the profile form.
-    if (evt === "submit") {
-      this._profileTitleInput.value = this._name;
-      this._profileDescriptionInput.value = this._job;
-    }
-    this._profileEditForm.setUserInfo();
+    this._name.textContent = name;
+    this._job.textContent = job;
   }
 }
