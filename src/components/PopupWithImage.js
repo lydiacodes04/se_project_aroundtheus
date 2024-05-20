@@ -20,11 +20,3 @@ export default class PopupWithImage extends Popup {
     super.open();
   }
 }
-
-//see
-// function handleImageClick(data) {
-//   previewImageElement.src = data.link;
-//   previewImageElement.alt = data.name;
-//   previewImageElementTitle.textContent = data.name;
-//   open(previewImageModal);
-// }

@@ -41,6 +41,17 @@ export const profileEditModal = document.querySelector("#profile-edit-modal");
 export const addCardModal = document.querySelector("#add-card-modal");
 export const previewImageModal = document.querySelector("#image-preview-modal");
 
+//MODAL BUTTONS
+// const profileModalCloseButton = profileEditModal.querySelector(
+//   "#profile-close-button"
+// );
+// const addCardModalCloseButton = addCardModal.querySelector(
+//   "#add-card-close-button"
+// );
+// const modalImageCloseBtn = previewImageModal.querySelector(
+//   "#modal__image-close-button"
+// );
+
 // //MODAL COMPONENTS
 // export const profileEditForm = document.querySelector(
 //   "#profile-edit-modal-form"
