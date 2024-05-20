@@ -1,14 +1,4 @@
-import {
-  config,
-  initialCards,
-  cardSelector,
-  profileEditModal,
-  addCardModal,
-  previewImageModal,
-  cardListEl,
-  previewImageElement,
-  previewImageElementTitle,
-} from "../utils/constants.js";
+import { config, initialCards, cardSelector } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
@@ -16,6 +6,11 @@ import Section from "../components/Section.js";
 // import Popup from "../components/Popup.js";
 // import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+
+// // MODALS
+const profileEditModal = document.querySelector("#profile-edit-modal");
+const addCardModal = document.querySelector("#add-card-modal");
+const previewImageModal = document.querySelector("#image-preview-modal");
 
 //MODAL COMPONENTS
 const profileEditForm = document.querySelector("#profile-edit-modal-form");
@@ -26,12 +21,13 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const addNewCardButton = document.querySelector(".profile__add-button");
 
 //TEMPLATES
-// const previewImageElement = previewImageModal.querySelector(
-//   ".modal__image-element"
-// );
-// const previewImageElementTitle = previewImageModal.querySelector(
-//   ".modal__image-caption"
-// );
+const cardListEl = document.querySelector(".cards__list");
+const previewImageElement = previewImageModal.querySelector(
+  ".modal__image-element"
+);
+const previewImageElementTitle = previewImageModal.querySelector(
+  ".modal__image-caption"
+);
 
 const data = { previewImageElement, previewImageElementTitle };
 
@@ -44,17 +40,17 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
-// function close(modal) {
-//   modal.classList.remove("modal_opened");
-//   document.removeEventListener("keydown", closeModalEscape);
-//   modal.removeEventListener("mousedown", closeModalOverlay);
-// }
+function close(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEscape);
+  modal.removeEventListener("mousedown", closeModalOverlay);
+}
 
-// function open(modal) {
-//   modal.classList.add("modal_opened");
-//   document.addEventListener("keydown", closeModalEscape);
-//   modal.addEventListener("mousedown", closeModalOverlay);
-// }
+function open(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalEscape);
+  modal.addEventListener("mousedown", closeModalOverlay);
+}
 
 function closeModalOverlay(evt) {
   if (evt.target === evt.currentTarget) {
