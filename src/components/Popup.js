@@ -7,7 +7,8 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("modal_opened");
-    // document.removeEventListener("keydown", closeModalEscape);
+    document.addEventListener("keydown", close);
+    this._popupElement.addEventListener("mousedown", close);
   }
   //replaces:
   // function open(modal) {
@@ -18,7 +19,9 @@ export default class Popup {
 
   close() {
     this._popupElement.classList.remove("modal_opened");
-    // document.removeEventListener("keydown", closeModalEscape);
+    document.removeEventListener("keydown", close);
+    this._popupElement.removeEventListener("mousedown", close);
+    this._popupElement.setEventListeners();
   }
   //replaces:
   // function close(modal) {
@@ -30,14 +33,30 @@ export default class Popup {
     if (evt.key === "Escape") {
       this.close();
     }
+    //replaces
+    // function closeModalEscape(evt) {
+    //   if (evt.key === "Escape") {
+    //     const modalOpened = document.querySelector(".modal_opened");
+    //     modalOpened.close();
+    //   }
+    // }
   }
 
   setEventListeners() {
-    this._closeButton.addEventListener("click", close);
+    this._popupElement.addEventListener("click", () => {
+      if (evt.target === this._popupElement) {
+        this._popupElement.close();
+      }
+    });
 
-    // if (evt.target === this._popupElement) {
-    //   this._popupElement.addEventListener("click", close);
-    // }
-    return this._popupElement;
+    this._closeButton.addEventListener("click", close);
+    // return this._popupElement;
   }
 }
+
+//replaces
+//function closeModalOverlay(evt) {
+//   if (evt.target === evt.currentTarget) {
+//     evt.currentTarget.close();
+//   }
+// }

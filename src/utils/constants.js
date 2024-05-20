@@ -7,8 +7,6 @@ export const config = {
   errorClass: "modal__error_visible",
 };
 
-export const cardSelector = "#card-template";
-
 export const initialCards = [
   {
     name: "Yosemite Valley",
@@ -35,18 +33,6 @@ export const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-
-//MODAL BUTTONS
-// const profileModalCloseButton = profileEditModal.querySelector(
-//   "#profile-close-button"
-// );
-// const addCardModalCloseButton = addCardModal.querySelector(
-//   "#add-card-close-button"
-// );
-// const modalImageCloseBtn = previewImageModal.querySelector(
-//   "#modal__image-close-button"
-// );
-//const closeButtons = document.querySelectorAll(".modal__close");
 
 // //MODAL COMPONENTS
 // export const profileEditForm = document.querySelector(

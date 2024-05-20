@@ -1,9 +1,8 @@
-import { config, initialCards, cardSelector } from "../utils/constants.js";
+import { config, initialCards } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
 import Section from "../components/Section.js";
-// import Popup from "../components/Popup.js";
 // import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 
@@ -20,7 +19,20 @@ const addCardForm = document.querySelector("#add-card-form");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const addNewCardButton = document.querySelector(".profile__add-button");
 
+//CLOSE BUTTONS
+const profileModalCloseButton = profileEditModal.querySelector(
+  "#profile-close-button"
+);
+// const addCardModalCloseButton = addCardModal.querySelector(
+//   "#add-card-close-button"
+// );
+// const modalImageCloseBtn = previewImageModal.querySelector(
+//   "#modal__image-close-button"
+// );
+// const closeButtons = document.querySelectorAll(".modal__close");
+
 //TEMPLATES
+const cardSelector = "#card-template";
 const cardListEl = document.querySelector(".cards__list");
 const previewImageElement = previewImageModal.querySelector(
   ".modal__image-element"
@@ -40,30 +52,30 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
-function close(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalEscape);
-  modal.removeEventListener("mousedown", closeModalOverlay);
-}
+// function close(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keydown", closeModalEscape);
+//   modal.removeEventListener("mousedown", closeModalOverlay);
+// }
 
-function open(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalEscape);
-  modal.addEventListener("mousedown", closeModalOverlay);
-}
+// function open(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keydown", closeModalEscape);
+//   modal.addEventListener("mousedown", closeModalOverlay);
+// }
 
-function closeModalOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
-    close(evt.currentTarget);
-  }
-}
+// function closeModalOverlay(evt) {
+//   if (evt.target === evt.currentTarget) {
+//     evt.currentTarget.close();
+//   }
+// }
 
-function closeModalEscape(evt) {
-  if (evt.key === "Escape") {
-    const modalOpened = document.querySelector(".modal_opened");
-    close(modalOpened);
-  }
-}
+// function closeModalEscape(evt) {
+//   if (evt.key === "Escape") {
+//     const modalOpened = document.querySelector(".modal_opened");
+//     modalOpened.close();
+//   }
+// }
 
 // function renderCard(cardEl, container) {
 //   container.prepend(cardEl);
@@ -74,31 +86,31 @@ function handleImageClick(data) {
   previewImageElement.src = data.link;
   previewImageElement.alt = data.name;
   previewImageElementTitle.textContent = data.name;
-  open(previewImageModal);
+  previewImageModal.open();
 }
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  close(profileEditModal);
+  profileEditModal.close();
 }
 
 //EVENT LISTENERS
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  open(profileEditModal);
+  profileEditModal.open();
 });
 
-// profileModalCloseButton.addEventListener("click", () =>
-//   close(profileEditModal)
-// );
+profileModalCloseButton.addEventListener("click", () =>
+  profileEditModal.close()
+);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addNewCardButton.addEventListener("click", () => {
-  open(addCardModal);
+  addCardModal.open();
 });
 
 // addCardModalCloseButton.addEventListener("click", () => close(addCardModal));
