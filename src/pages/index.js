@@ -25,8 +25,6 @@ const addCardForm = document.querySelector("#add-card-form");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const addNewCardButton = document.querySelector(".profile__add-button");
 
-const closeButtons = document.querySelectorAll(".modal__close");
-
 //TEMPLATES
 // const previewImageElement = previewImageModal.querySelector(
 //   ".modal__image-element"
@@ -46,17 +44,17 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
-function close(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalEscape);
-  modal.removeEventListener("mousedown", closeModalOverlay);
-}
+// function close(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener("keydown", closeModalEscape);
+//   modal.removeEventListener("mousedown", closeModalOverlay);
+// }
 
-function open(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalEscape);
-  modal.addEventListener("mousedown", closeModalOverlay);
-}
+// function open(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener("keydown", closeModalEscape);
+//   modal.addEventListener("mousedown", closeModalOverlay);
+// }
 
 function closeModalOverlay(evt) {
   if (evt.target === evt.currentTarget) {
@@ -145,6 +143,10 @@ layerSection.renderItems();
 
 const popupImage = new PopupWithImage("#image-preview-modal", data);
 popupImage.setEventListeners();
+
+// note from Max:
+// const myClassInstance = new PopupWithForm(/* arguments */);
+// myClassInstance.open(); // this would call the `open()` method in Popup.js
 
 // const newCardPopup = new PopupWithForm("#add-card-modal", handleFormSubmit);
 // // newCardPopup.open();

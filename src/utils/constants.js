@@ -51,6 +51,7 @@ export const previewImageModal = document.querySelector("#image-preview-modal");
 // const modalImageCloseBtn = previewImageModal.querySelector(
 //   "#modal__image-close-button"
 // );
+//const closeButtons = document.querySelectorAll(".modal__close");
 
 // //MODAL COMPONENTS
 // export const profileEditForm = document.querySelector(
