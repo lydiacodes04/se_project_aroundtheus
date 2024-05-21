@@ -59,7 +59,6 @@ const createCard = (cardData) => {
 
 function handleAddCardFormSubmit(inputValues) {
   createCard(inputValues);
-  newCardPopup.setEventListeners();
   newCardPopup.close();
 }
 
