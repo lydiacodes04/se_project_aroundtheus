@@ -8,8 +8,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 
 // // MODALS
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const addCardModal = document.querySelector("#add-card-modal");
 const previewImageModal = document.querySelector("#image-preview-modal");
 
 //MODAL COMPONENTS
@@ -32,17 +30,10 @@ const previewImageElementTitle = previewImageModal.querySelector(
   ".modal__image-caption"
 );
 
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
-
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-
-// function renderCard(cardEl, container) {
-//   container.prepend(cardEl);
-// }
 
 //EVENT HANDLERS
 function handleImageClick(data) {
