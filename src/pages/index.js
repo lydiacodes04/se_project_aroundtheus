@@ -7,10 +7,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 
-// // MODALS
-const previewImageModal = document.querySelector("#image-preview-modal");
-
-//MODAL COMPONENTS
+//FORMS
 const profileEditForm = document.querySelector("#profile-edit-modal-form");
 const addCardForm = document.querySelector("#add-card-form");
 
@@ -19,17 +16,14 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const addNewCardButton = document.querySelector(".profile__add-button");
 
 //CARDS
-const cardSelector = "#card-template";
 const cardListEl = document.querySelector(".cards__list");
 
 //PREVIEW IMAGE EL
-const previewImageElement = previewImageModal.querySelector(
-  ".modal__image-element"
-);
-const previewImageElementTitle = previewImageModal.querySelector(
+const previewImageElement = document.querySelector(".modal__image-element");
+const previewImageElementTitle = document.querySelector(
   ".modal__image-caption"
 );
-
+//profile inputs
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -58,7 +52,7 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 const createCard = (cardData) => {
-  const card = new Card(cardData, cardSelector, handleImageClick);
+  const card = new Card(cardData, "#card-template", handleImageClick);
   cardListEl.prepend(card.getView());
 };
 
