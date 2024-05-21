@@ -51,6 +51,7 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
+//functions
 const createCard = (cardData) => {
   const card = new Card(cardData, "#card-template", handleImageClick);
   cardListEl.prepend(card.getView());
@@ -62,7 +63,7 @@ function handleAddCardFormSubmit(inputValues) {
   newCardPopup.close();
 }
 
-//instantiations of formValidator
+//instantiations
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
