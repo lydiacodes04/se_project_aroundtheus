@@ -66,22 +66,32 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
-const handleAddCardFormSubmit = (e) => {
-  e.preventDefault();
-  const name = e.target.title.value;
-  const link = e.target.link.value;
+// function handleAddCardFormSubmit() {
+//   newCardPopup.setEventListeners();
+//   // newCardPopup.close();
+// }
 
-  const cardData = { name, link };
-  const viewCard = createCard(cardData);
-  // renderCard(viewCard, cardListEl);
-  newCardPopup.close();
-  e.target.reset();
-};
+// const handleAddCardFormSubmit = (e) => {
+//   const name = e.target.name.value;
+//   const link = e.target.link.value;
+
+//   const cardData = { name, link };
+//   const viewCard = createCard(cardData);
+//   // renderCard(viewCard, cardListEl);
+//   newCardPopup.setEventListeners();
+//   newCardPopup.close();
+// };
 
 const createCard = (cardData) => {
   const card = new Card(cardData, cardSelector, handleImageClick);
   cardListEl.prepend(card.getView());
 };
+
+function handleAddCardFormSubmit(inputValues) {
+  createCard(inputValues);
+  newCardPopup.setEventListeners();
+  newCardPopup.close();
+}
 
 //instantiations of formValidator
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
