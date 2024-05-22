@@ -8,7 +8,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 
 //FORMS
-const profileEditForm = document.querySelector("#profile-edit-modal-form");
+const profileEditForm = document.forms["profile-edit-modal-form"];
 const addCardForm = document.querySelector("#add-card-form");
 
 //MAIN PAGE BUTTONS
@@ -55,7 +55,8 @@ addNewCardButton.addEventListener("click", () => {
 //functions
 const createCard = (cardData) => {
   const card = new Card(cardData, "#card-template", handleImageClick);
-  cardListEl.prepend(card.getView());
+  // cardListEl.prepend(card.getView());
+  addItem(card);
 };
 
 function handleAddCardFormSubmit(inputValues) {
@@ -74,6 +75,7 @@ const layerSection = new Section(
   { items: initialCards, renderer: createCard },
   ".cards__list"
 );
+// layerSection.addItem(card);
 layerSection.renderItems();
 
 const popupImage = new PopupWithImage("#image-preview-modal", {
