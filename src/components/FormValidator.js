@@ -77,4 +77,14 @@ export default class FormValidator {
     });
     this._setEventListeners();
   }
+
+  resetValidation() {
+    this._toggleButtonState();
+    //<== toggle the submit button ==
+
+    this._inputEls.forEach((inputElement) => {
+      this._hideError(inputElement);
+      //<== clear errors ==
+    });
+  }
 }

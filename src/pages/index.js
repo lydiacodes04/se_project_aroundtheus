@@ -45,6 +45,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = data.name;
   profileDescriptionInput.value = data.about;
   profileEditPopup.open();
+  profileEditButton.resetValidation();
 });
 
 addNewCardButton.addEventListener("click", () => {
