@@ -55,8 +55,11 @@ function createCard(cardData) {
   return cardElement;
 }
 
-function handleAddCardFormSubmit(inputValues) {
-  createCard(inputValues);
+function handleAddCardFormSubmit(data) {
+  const { name, link } = data;
+  const cardData = { name: name, link: link };
+  const cardElement = createCard(cardData);
+  section.addItem(cardElement);
   newCardPopup.close();
 }
 
