@@ -61,6 +61,8 @@ function handleAddCardFormSubmit(data) {
   const cardElement = createCard(cardData);
   section.addItem(cardElement);
   newCardPopup.close();
+  newCardPopup.reset();
+  addCardFormValidator._handleDisableButton();
 }
 
 //instantiations

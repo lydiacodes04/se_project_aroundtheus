@@ -22,11 +22,15 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  reset() {
+    this._popupForm.reset();
+  }
+
   setEventListeners() {
     this._popupForm.addEventListener("submit", () => {
       this._handleFormSubmit(this._getInputValues());
       this._popupForm.reset();
-      this._popupForm.resetValidation();
+      // this._popupForm.resetValidation();
     });
     // this._popupForm.addEventListener("submit", () => {
     //   this._popupForm.toggleButtonState();
