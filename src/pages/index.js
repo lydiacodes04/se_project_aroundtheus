@@ -62,7 +62,7 @@ function handleAddCardFormSubmit(data) {
   section.addItem(cardElement);
   newCardPopup.close();
   newCardPopup.reset();
-  addCardFormValidator._handleDisableButton();
+  addCardFormValidator.handleDisableButton();
 }
 
 //instantiations

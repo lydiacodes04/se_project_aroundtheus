@@ -38,7 +38,7 @@ export default class FormValidator {
     }
   }
 
-  _handleDisableButton() {
+  handleDisableButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
   }
@@ -54,7 +54,7 @@ export default class FormValidator {
 
   toggleButtonState() {
     if (this._hasInvalidInput(this._inputEls)) {
-      this._handleDisableButton();
+      this.handleDisableButton();
       return;
     }
     this._handleEnableButton();
@@ -79,7 +79,7 @@ export default class FormValidator {
   }
 
   resetValidation() {
-    this._toggleButtonState();
+    this.toggleButtonState();
     this._inputEls.forEach((inputElement) => {
       this._hideError(inputElement);
     });
