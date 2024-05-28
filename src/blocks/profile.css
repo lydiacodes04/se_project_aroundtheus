@@ -28,7 +28,7 @@
   margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .profile__description {
