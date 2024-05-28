@@ -6,6 +6,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/API.js";
 
 //FORMS
 const profileEditForm = document.forms["profile-edit-modal-form"];
@@ -104,3 +105,24 @@ const profileEditPopup = new PopupWithForm(
   handleProfileEditSubmit
 );
 profileEditPopup.setEventListeners();
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getInitialCards()
+  .then((data) => {
+    console.log(data);
+    //render cards based on data array
+    data.forEach((dataItem) => {
+      const card = new Card(dataItem, "#card-template", handleImageClick);
+      const cardElement = card.getView();
+      console.log(cardElement);
+    });
+  })
+  .catch((err) => console.error(err));
