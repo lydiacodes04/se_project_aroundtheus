@@ -5,7 +5,16 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
+    fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  getUser() {
+    return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
       (res) => {
         if (res.ok) {
           return res.json();
@@ -14,28 +23,16 @@ export default class Api {
       }
     );
   }
-  // other methods for working with the API
-  // Promise.all(getUserInfo, getInitialcards, etc.) {
-  // }
-  getInitialCardsbyList(initialCards) {
-    return fetch(`${this._baseUrl}/initialCards`, {
-      method: "GET",
-      body: JSON.stringify(initialCards),
-    });
-  }
 }
+// addCard() {
+//   // fetch request to add a new card
+//  }
+
+//  editProfile() {
+//    // fetch request to edit the user profile
+//  }
+// other methods for working with the API
+// Promise.all(getUserInfo, getInitialcards, etc.) {
+// }
 
 //   })
-
-// //note from flagship video
-// // class JSONPlaceHolderClient {
-// //   constructor() {
-// //     this._baseUrl = "https://jsonplaceholder.typicode.com";
-// //   }
-// //   getPosts() {
-// //     return fetch(`${this._baseUrl}/posts`);
-// //   }
-// //   getPostsbyId(id) {
-// //     return fetch(`${this._baseUrl}/posts/${id}`);
-// //   }
-// // }

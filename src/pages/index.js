@@ -7,6 +7,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
+import { data } from "autoprefixer";
 
 //FORMS
 const profileEditForm = document.forms["profile-edit-modal-form"];
@@ -114,15 +115,13 @@ const api = new Api({
   },
 });
 
-api
-  .getInitialCards()
-  .then((data) => {
-    console.log(data);
-    //render cards based on data array
-    data.forEach((dataItem) => {
-      const card = new Card(dataItem, "#card-template", handleImageClick);
-      const cardElement = card.getView();
-      console.log(cardElement);
-    });
-  })
-  .catch((err) => console.error(err));
+api.getInitialCards();
+//   .then((data) => {
+//     data.forEach((dataItem) => {
+//       const card = new Card(dataItem, "#card-template", handleImageClick);
+//       const cardElement = card.getView();
+//     });
+//   })
+//   .catch((err) => console.error(err));
+
+api.getUser();
