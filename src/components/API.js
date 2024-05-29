@@ -13,12 +13,6 @@ export default class Api {
     });
   }
 
-  // _handleFetch(res) {
-  //   if (res.ok) {
-  //     return res.json();
-  //   }
-  //   return Promise.reject(`Error: ${res.status}`);
-  // }
   getUser() {
     return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
       (res) => {
@@ -29,16 +23,20 @@ export default class Api {
       }
     );
   }
+  addCard() {
+    fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+      authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
+      "Content-Type": "application/json",
+      method: "POST",
+      body: JSON.stringify({ name: this.name, link: this.link }),
+    });
+  }
 }
-// addCard() {
-//   // fetch request to add a new card
-//  }
 
 //  editProfile() {
 //    // fetch request to edit the user profile
 //  }
-// other methods for working with the API
-// Promise.all(getUserInfo, getInitialcards, etc.) {
-// }
 
-//   })
+Promise.all([Api.getInitialCards, Api.getUser, Api.addCard]).then((values) => {
+  console.log(values);
+});

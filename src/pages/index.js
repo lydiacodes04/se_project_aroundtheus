@@ -99,7 +99,10 @@ const newCardPopup = new PopupWithForm(
 );
 newCardPopup.setEventListeners();
 
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+export const userInfo = new UserInfo(
+  ".profile__title",
+  ".profile__description"
+);
 
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
