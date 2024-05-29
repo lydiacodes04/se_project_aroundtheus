@@ -13,6 +13,12 @@ export default class Api {
     });
   }
 
+  // _handleFetch(res) {
+  //   if (res.ok) {
+  //     return res.json();
+  //   }
+  //   return Promise.reject(`Error: ${res.status}`);
+  // }
   getUser() {
     return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
       (res) => {
