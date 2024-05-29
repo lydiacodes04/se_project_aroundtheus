@@ -24,18 +24,29 @@ export default class Api {
     );
   }
   addCard() {
-    fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-      authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-      "Content-Type": "application/json",
+    fetch(`${this._baseUrl}/cards`, {
       method: "POST",
+      headers: {
+        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ name: this.name, link: this.link }),
     });
   }
+  editProfile() {
+    fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: "Marie Skłodowska Curie",
+        about: "Physicist and Chemist",
+      }),
+    });
+  }
 }
-
-//  editProfile() {
-//    // fetch request to edit the user profile
-//  }
 
 Promise.all([Api.getInitialCards, Api.getUser, Api.addCard]).then((values) => {
   console.log(values);

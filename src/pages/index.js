@@ -119,12 +119,17 @@ const api = new Api({
 });
 
 api.getInitialCards();
-//   .then((data) => {
-//     data.forEach((dataItem) => {
-//       const card = new Card(dataItem, "#card-template", handleImageClick);
-//       const cardElement = card.getView();
-//     });
-//   })
-//   .catch((err) => console.error(err));
+
+// .then((data) => {
+//   console.log(data);
+//   data.forEach((dataItem) => {
+//     const card = new Card(dataItem, "#card-template", handleImageClick);
+//     const cardElement = card.getView();
+//   });
+// })
+// .catch((err) => console.error(err));
 
 api.getUser();
+// api.addCard();
+
+api.editProfile();
