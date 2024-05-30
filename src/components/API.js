@@ -26,7 +26,7 @@ export default class Api {
     );
   }
   addCard() {
-    fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
         authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",

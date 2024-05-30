@@ -118,7 +118,6 @@ const api = new Api({
 api
   .getInitialCards()
   .then((data) => {
-    console.log(data);
     data.forEach((dataItem) => {
       const card = new Card(dataItem, "#card-template", handleImageClick);
       const cardElement = card.getView();
