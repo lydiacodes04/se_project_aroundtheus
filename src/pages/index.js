@@ -57,15 +57,17 @@ function createCard(cardData) {
   return cardElement;
 }
 
-// function handleAddCardFormSubmit(data) {
-//   const { name, link } = data;
-//   const cardData = { name: name, link: link };
-//   const cardElement = createCard(cardData);
-//   section.addItem(cardElement);
-//   newCardPopup.close();
-//   newCardPopup.reset();
-//   addCardFormValidator.handleDisableButton();
-// }
+function handleAddCardFormSubmit(data) {
+  const { name, link } = data;
+  const cardData = { name: name, link: link };
+  api.addCard(name, link).then((data) => {
+    const cardElement = createCard(cardData);
+    section.addItem(cardElement);
+  });
+  newCardPopup.close();
+  newCardPopup.reset();
+  addCardFormValidator.handleDisableButton();
+}
 
 //instantiations
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
@@ -93,7 +95,10 @@ const popupImage = new PopupWithImage("#image-preview-modal", {
 });
 popupImage.setEventListeners();
 
-const newCardPopup = new PopupWithForm("#add-card-modal");
+const newCardPopup = new PopupWithForm(
+  "#add-card-modal",
+  handleAddCardFormSubmit
+);
 newCardPopup.setEventListeners();
 
 const userInfo = new UserInfo(".profile__title", ".profile__description");
@@ -126,12 +131,12 @@ api
   })
   .catch((err) => console.error(err));
 
-api
-  .addCard()
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => console.error(err));
+// api
+//   .addCard(name, link)
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => console.error(err));
 
 // api.getUser(userInfo);
 // api.editProfile();
