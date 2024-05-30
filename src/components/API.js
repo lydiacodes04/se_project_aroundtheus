@@ -27,16 +27,16 @@ export default class Api {
     );
   }
   //CARD ROUTE: create a card (POST)
-  addCard(name, link) {
-    return fetch(`${this._baseUrl}/cards`, {
+  addCard({ name, link }) {
+    fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
         authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "Rio",
-        link: "https://media.istockphoto.com/id/518230906/photo/christ-the-redeemer-in-rio-de-janeiro.jpg?s=1024x1024&w=is&k=20&c=zjtXz3bzlh5W3OP16aSRao9KdY9p_rk76KK4eFgubxA=",
+        name,
+        link,
       }),
     }).then((res) => {
       if (res.ok) {

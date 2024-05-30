@@ -60,7 +60,7 @@ function createCard(cardData) {
 function handleAddCardFormSubmit(data) {
   const { name, link } = data;
   const cardData = { name: name, link: link };
-  api.addCard(name, link).then((data) => {
+  api.addCard({ name, link }).then((data) => {
     const cardElement = createCard(cardData);
     section.addItem(cardElement);
   });
@@ -69,7 +69,7 @@ function handleAddCardFormSubmit(data) {
   addCardFormValidator.handleDisableButton();
 }
 
-//instantiations
+//instantiationsd
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
