@@ -57,15 +57,15 @@ function createCard(cardData) {
   return cardElement;
 }
 
-function handleAddCardFormSubmit(data) {
-  const { name, link } = data;
-  const cardData = { name: name, link: link };
-  const cardElement = createCard(cardData);
-  section.addItem(cardElement);
-  newCardPopup.close();
-  newCardPopup.reset();
-  addCardFormValidator.handleDisableButton();
-}
+// function handleAddCardFormSubmit(data) {
+//   const { name, link } = data;
+//   const cardData = { name: name, link: link };
+//   const cardElement = createCard(cardData);
+//   section.addItem(cardElement);
+//   newCardPopup.close();
+//   newCardPopup.reset();
+//   addCardFormValidator.handleDisableButton();
+// }
 
 //instantiations
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
@@ -93,10 +93,7 @@ const popupImage = new PopupWithImage("#image-preview-modal", {
 });
 popupImage.setEventListeners();
 
-const newCardPopup = new PopupWithForm(
-  "#add-card-modal",
-  handleAddCardFormSubmit
-);
+const newCardPopup = new PopupWithForm("#add-card-modal");
 newCardPopup.setEventListeners();
 
 const userInfo = new UserInfo(".profile__title", ".profile__description");
@@ -121,10 +118,20 @@ api
     data.forEach((dataItem) => {
       const card = new Card(dataItem, "#card-template", handleImageClick);
       const cardElement = card.getView();
+      section.addItem(cardElement);
+      newCardPopup.close();
+      newCardPopup.reset();
+      addCardFormValidator.handleDisableButton();
     });
   })
   .catch((err) => console.error(err));
 
-// api.getUser();
-// api.addCard();
+api
+  .addCard()
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => console.error(err));
+
+// api.getUser(userInfo);
 // api.editProfile();
