@@ -5,12 +5,14 @@ export default class Api {
   }
 
   getInitialCards() {
-    fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then((res) => {
-      if (res.ok) {
-        return res.json();
+    return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
+      (res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
       }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    );
   }
 
   getUser() {
@@ -26,17 +28,20 @@ export default class Api {
   addCard() {
     fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
-      body: JSON.stringify({
-        name: "Yosemite Valley",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-      }),
+      headers: {
+        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
     });
   }
   editProfile() {
     fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name: "Marie Skłodowska Curie",
         about: "Physicist and Chemist",

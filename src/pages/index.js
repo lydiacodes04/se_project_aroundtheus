@@ -99,10 +99,7 @@ const newCardPopup = new PopupWithForm(
 );
 newCardPopup.setEventListeners();
 
-export const userInfo = new UserInfo(
-  ".profile__title",
-  ".profile__description"
-);
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
@@ -121,23 +118,14 @@ const api = new Api({
 api
   .getInitialCards()
   .then((data) => {
+    console.log(data);
     data.forEach((dataItem) => {
       const card = new Card(dataItem, "#card-template", handleImageClick);
       const cardElement = card.getView();
     });
   })
   .catch((err) => console.error(err));
-// way we did it with Serge (getting error)
-// api.getInitialCards();
-// .then((data) => {
-//   console.log(data);
-//   data.forEach((dataItem) => {
-//     const card = new Card(dataItem, "#card-template", handleImageClick);
-//     const cardElement = card.getView();
-//   });
-// })
-// .catch((err) => console.error(err));
 
-api.getUser();
-api.addCard();
-api.editProfile();
+// api.getUser();
+// api.addCard();
+// api.editProfile();
