@@ -26,20 +26,17 @@ export default class Api {
   addCard() {
     fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: this.name, link: this.link }),
+      headers: this._headers,
+      body: JSON.stringify({
+        name: "Yosemite Valley",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+      }),
     });
   }
   editProfile() {
     fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: "Marie Skłodowska Curie",
         about: "Physicist and Chemist",

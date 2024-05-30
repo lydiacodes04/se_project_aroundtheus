@@ -114,12 +114,21 @@ const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
     authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-    "Content-Type": "application/json",
+    contentType: "application/json",
   },
 });
 
-api.getInitialCards();
-
+api
+  .getInitialCards()
+  .then((data) => {
+    data.forEach((dataItem) => {
+      const card = new Card(dataItem, "#card-template", handleImageClick);
+      const cardElement = card.getView();
+    });
+  })
+  .catch((err) => console.error(err));
+// way we did it with Serge (getting error)
+// api.getInitialCards();
 // .then((data) => {
 //   console.log(data);
 //   data.forEach((dataItem) => {
@@ -130,6 +139,5 @@ api.getInitialCards();
 // .catch((err) => console.error(err));
 
 api.getUser();
-// api.addCard();
-
+api.addCard();
 api.editProfile();
