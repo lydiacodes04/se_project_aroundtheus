@@ -71,7 +71,6 @@ function handleAddCardFormSubmit(data) {
     })
     .catch((error) => {
       console.error("Error adding card:", error);
-      // Handle the error (e.g., show message to the user)
     });
 }
 
@@ -82,9 +81,20 @@ profileEditFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
 
+const eliminateMe = [
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+  },
+];
+
 const section = new Section(
   {
-    items: initialCards,
+    items: eliminateMe,
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
       section.addItem(cardElement);
@@ -127,16 +137,19 @@ api
   .getInitialCards()
   .then((data) => {
     data.forEach((dataItem) => {
-      const card = new Card(dataItem, "#card-template", handleImageClick);
-      const cardElement = card.getView();
-      section.addItem(cardElement);
-      newCardPopup.close();
-      newCardPopup.reset();
-      addCardFormValidator.handleDisableButton();
+      renderCards(dataItem);
     });
   })
   .catch((err) => console.error(err));
 
+function renderCards(dataItem) {
+  const card = new Card(dataItem, "#card-template", handleImageClick);
+  const cardElement = card.getView();
+  section.addItem(cardElement);
+  newCardPopup.close();
+  newCardPopup.reset();
+  addCardFormValidator.handleDisableButton();
+}
 // api
 //   .addCard(name, link)
 //   .then((res) => {
@@ -144,5 +157,5 @@ api
 //   })
 //   .catch((err) => console.error(err));
 
-// api.getUser(userInfo);
-// api.editProfile();
+api.getUser();
+api.editProfile();

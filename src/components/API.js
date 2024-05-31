@@ -46,20 +46,19 @@ export default class Api {
     });
   }
 
-  //USER ROUTE: edit/update your profile info (PATCH)
-  // editProfile() {
-  //   return fetch(`${this._baseUrl}/users/me`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       name: "Lydia Lockhart",
-  //       about: "Software Developer",
-  //     }),
-  //   });
-  // }
+  editProfile() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: "Lydia Lockhart",
+        about: "Software Developer",
+      }),
+    });
+  }
 
   // renderAll() {
   //   Promise.all([Api.getInitialCards, Api.getUser, Api.addCard]).then(
