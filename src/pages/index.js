@@ -60,16 +60,22 @@ function createCard(cardData) {
 function handleAddCardFormSubmit(data) {
   const { name, link } = data;
   const cardData = { name: name, link: link };
-  api.addCard({ name, link }).then((data) => {
-    const cardElement = createCard(cardData);
-    section.addItem(cardElement);
-  });
-  newCardPopup.close();
-  newCardPopup.reset();
-  addCardFormValidator.handleDisableButton();
+  api
+    .addCard(name, link)
+    .then((data) => {
+      const cardElement = createCard(cardData);
+      section.addItem(cardElement);
+      newCardPopup.close();
+      newCardPopup.reset();
+      addCardFormValidator.handleDisableButton();
+    })
+    .catch((error) => {
+      console.error("Error adding card:", error);
+      // Handle the error (e.g., show message to the user)
+    });
 }
 
-//instantiationsd
+//instantiations
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 

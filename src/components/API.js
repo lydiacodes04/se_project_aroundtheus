@@ -27,8 +27,8 @@ export default class Api {
     );
   }
   //CARD ROUTE: create a card (POST)
-  addCard({ name, link }) {
-    fetch(`${this._baseUrl}/cards`, {
+  addCard(name, link) {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
         authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
