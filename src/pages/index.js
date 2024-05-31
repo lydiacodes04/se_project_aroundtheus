@@ -34,8 +34,10 @@ function handleImageClick(data) {
 }
 
 function handleProfileEditSubmit(inputValues) {
-  userInfo.setUserInfo(inputValues.name, inputValues.about);
-  profileEditPopup.close();
+  api.editProfile(inputValues.name, inputValues.about).then((data) => {
+    userInfo.setUserInfo(data.name, data.about);
+    profileEditPopup.close();
+  });
 }
 
 // //EVENT LISTENERS
@@ -150,12 +152,7 @@ function renderCards(dataItem) {
   newCardPopup.reset();
   addCardFormValidator.handleDisableButton();
 }
-// api
-//   .addCard(name, link)
-//   .then((res) => {
-//     console.log(res);
-//   })
-//   .catch((err) => console.error(err));
 
-api.getUser();
-api.editProfile();
+api.getUser().then((inputValues) => {
+  userInfo.setUserInfo(inputValues.name, inputValues.about);
+});
