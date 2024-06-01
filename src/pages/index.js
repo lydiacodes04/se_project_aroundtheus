@@ -54,34 +54,38 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 //card generating functions
-function createCard(cardData) {
+
+// function createCard(cardData) {
+//   const card = new Card(
+//     cardData,
+//     "#card-template",
+//     handleImageClick,
+//     handleDeleteCard
+//   );
+//   const cardElement = card.getView();
+// }
+
+function renderCards(dataItem) {
   const card = new Card(
-    cardData,
+    dataItem,
     "#card-template",
     handleImageClick,
     handleDeleteCard
   );
   const cardElement = card.getView();
-  return cardElement;
-}
-
-function renderCards(dataItem) {
-  const card = new Card(dataItem, "#card-template", handleImageClick);
-  const cardElement = card.getView();
   section.addItem(cardElement);
-  newCardPopup.close();
-  newCardPopup.reset();
-  addCardFormValidator.handleDisableButton();
+  // newCardPopup.close();
+  // newCardPopup.reset();
+  // addCardFormValidator.handleDisableButton();
 }
 
 //SUBMIT handlers
 function handleAddCardFormSubmit(data) {
-  const { name, link } = data;
-  const cardData = { name: name, link: link };
+  const cardData = { name: data.name, link: data.link };
   api
-    .addCard(name, link)
+    .addCard(data)
     .then((data) => {
-      const cardElement = createCard(cardData);
+      const cardElement = renderCards(cardData);
       section.addItem(cardElement);
       newCardPopup.close();
       newCardPopup.reset();
@@ -118,7 +122,7 @@ const section = new Section(
   {
     items: eliminateMe,
     renderer: (cardData) => {
-      const cardElement = createCard(cardData);
+      const cardElement = renderCards(cardData);
       section.addItem(cardElement);
     },
   },
@@ -151,6 +155,7 @@ const deleteCardPopup = new PopupWithForm(
   "#delete-card-modal",
   handleDeleteCardFormSubmit
 );
+deleteCardPopup.setEventListeners();
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",

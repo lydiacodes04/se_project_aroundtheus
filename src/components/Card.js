@@ -4,6 +4,7 @@ export default class Card {
   constructor(data, cardSelector, handleImageClick, handleDeleteCard) {
     this.name = data.name;
     this.link = data.link;
+    this.cardID = data._id;
 
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
@@ -20,9 +21,7 @@ export default class Card {
       //old code, immediate delete the card
       // this._handleDeleteCard();
       //new card, let's call the delete card function to make sure you really wanna delete the card
-      this.currentCardId = this._cardElement.querySelector("_id");
-      console.log(this.currentCardId);
-      this._handleDeleteCard(this.currentCardId);
+      this._handleDeleteCard(this);
     });
 
     this._cardImageEl.addEventListener("click", () => {
@@ -34,14 +33,10 @@ export default class Card {
     this._likeButton.classList.toggle("card__like-button_active");
   };
 
-  // _openDeleteCardPopup() {
-  //   this._deleteCardPopup = deleteCardPopup;
-  //   this._deleteCardPopup.open();
-  // }
-
   // _handleDeleteCard() {
   //   this._cardElement.remove();
   //   this._element = null;
+  //   return console.log(this.cardID);
   // }
 
   getView() {
