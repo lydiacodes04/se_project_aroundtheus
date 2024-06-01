@@ -12,6 +12,7 @@ export default class Card {
   _setEventListeners() {
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._trashButton = this._cardElement.querySelector(".card__trash-button");
+    // this._submitButton = this._popupElement.querySelector(".modal__save");
 
     this._likeButton.addEventListener("click", this._handleLikeButton);
 
@@ -22,6 +23,10 @@ export default class Card {
       //new card, let's open the deleteCardPopup first to make sure you really wanna delete the card
       this._openDeleteCardPopup();
     });
+
+    // this._submitButton.addEventListener("click", () => {
+    //   console.log("you clicked the YES button");
+    // });
 
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick(this);

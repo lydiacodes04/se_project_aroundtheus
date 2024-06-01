@@ -90,6 +90,15 @@ function handleAddCardFormSubmit(data) {
 function handleDeleteCardFormSubmit(cardID) {
   api.deleteRequest(cardID);
 }
+// _confirmDelete() {
+//   this._deleteCardPopup.addEventListener("submit", () => {
+//  this._handleDeleteCard(this);
+// });
+// // this._submitButton = this._deleteCardPopup.querySelector(".modal__save");
+// // this._submitButton.addEventListener("submit", () => {
+// //   this._handleDeleteCard(this);
+// // });
+// }
 
 //instantiations
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
