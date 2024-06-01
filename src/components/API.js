@@ -61,6 +61,18 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+  // CARD ROUTE:
+  deleteRequest(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
 
 // renderAll() {

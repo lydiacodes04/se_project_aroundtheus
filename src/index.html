@@ -156,6 +156,23 @@
       </div>
     </div>
 
+    <!--                           -->
+    <!-- Confirm delete card modal -->
+    <!--                           -->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button
+          id="delete-card-close-button"
+          class="modal__close"
+          type="button"
+        ></button>
+        <p class="modal__heading">Are you sure?</p>
+        <form class="modal__form" id="delete-card-form">
+          <button class="modal__save" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
     <!--                    -->
     <!-- Card Template      -->
     <!--                    -->
@@ -167,11 +184,13 @@
           <button
             aria-label="like"
             class="card__like-button"
+            id="like-button"
             type="button"
           ></button>
           <button
             aria-label="trash"
             class="card__trash-button"
+            id="trash-button"
             type="button"
           ></button>
         </div>
