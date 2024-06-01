@@ -53,18 +53,23 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
-// trashButton.addEventListener("click", () => {
-//   console.log("you clicked the trash icon");
-//   deleteCardPopup.open();
-// });
-
-// functions
+//card generating functions
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
   const cardElement = card.getView();
   return cardElement;
 }
 
+function renderCards(dataItem) {
+  const card = new Card(dataItem, "#card-template", handleImageClick);
+  const cardElement = card.getView();
+  section.addItem(cardElement);
+  newCardPopup.close();
+  newCardPopup.reset();
+  addCardFormValidator.handleDisableButton();
+}
+
+//SUBMIT handlers
 function handleAddCardFormSubmit(data) {
   const { name, link } = data;
   const cardData = { name: name, link: link };
@@ -129,7 +134,7 @@ const newCardPopup = new PopupWithForm(
 );
 newCardPopup.setEventListeners();
 
-const deleteCardPopup = new PopupWithForm(
+export const deleteCardPopup = new PopupWithForm(
   "#delete-card-modal",
   handleDeleteCardFormSubmit
 );
@@ -159,15 +164,6 @@ api
     });
   })
   .catch((err) => console.error(err));
-
-function renderCards(dataItem) {
-  const card = new Card(dataItem, "#card-template", handleImageClick);
-  const cardElement = card.getView();
-  section.addItem(cardElement);
-  newCardPopup.close();
-  newCardPopup.reset();
-  addCardFormValidator.handleDisableButton();
-}
 
 api.getUser().then((inputValues) => {
   userInfo.setUserInfo(inputValues.name, inputValues.about);
