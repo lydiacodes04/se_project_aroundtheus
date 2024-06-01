@@ -55,7 +55,12 @@ addNewCardButton.addEventListener("click", () => {
 
 //card generating functions
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleDeleteCard
+  );
   const cardElement = card.getView();
   return cardElement;
 }
@@ -90,15 +95,6 @@ function handleAddCardFormSubmit(data) {
 function handleDeleteCardFormSubmit(cardID) {
   api.deleteRequest(cardID);
 }
-// _confirmDelete() {
-//   this._deleteCardPopup.addEventListener("submit", () => {
-//  this._handleDeleteCard(this);
-// });
-// // this._submitButton = this._deleteCardPopup.querySelector(".modal__save");
-// // this._submitButton.addEventListener("submit", () => {
-// //   this._handleDeleteCard(this);
-// // });
-// }
 
 //instantiations
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
@@ -131,6 +127,8 @@ const section = new Section(
 
 section.renderItems();
 
+const userInfo = new UserInfo(".profile__title", ".profile__description");
+
 const popupImage = new PopupWithImage("#image-preview-modal", {
   previewImageElement,
   previewImageElementTitle,
@@ -143,19 +141,16 @@ const newCardPopup = new PopupWithForm(
 );
 newCardPopup.setEventListeners();
 
-export const deleteCardPopup = new PopupWithForm(
-  "#delete-card-modal",
-  handleDeleteCardFormSubmit
-);
-deleteCardPopup.setEventListeners();
-
-const userInfo = new UserInfo(".profile__title", ".profile__description");
-
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
 );
 profileEditPopup.setEventListeners();
+
+const deleteCardPopup = new PopupWithForm(
+  "#delete-card-modal",
+  handleDeleteCardFormSubmit
+);
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -178,6 +173,9 @@ api.getUser().then((inputValues) => {
   userInfo.setUserInfo(inputValues.name, inputValues.about);
 });
 
-// api.deleteRequest(cardID).then((res) => {
-//   const card = new Card(dataItem, "#card-template", handleImageClick);
-// });
+function handleDeleteCard() {
+  deleteCardPopup.open();
+  deleteCardPopup.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+  });
+}
