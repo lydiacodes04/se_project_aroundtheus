@@ -24,7 +24,7 @@ const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
     authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-    contentType: "application/json",
+    "content-type": "application/json",
   },
 });
 
@@ -129,9 +129,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 //DELETING CARDS
-function handleDeleteCardFormSubmit(cardID) {
-  api.deleteRequest(cardID);
-}
+
 const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
@@ -140,15 +138,14 @@ profileEditPopup.setEventListeners();
 
 const deleteCardPopup = new PopupWithForm(
   "#delete-card-modal",
-  handleDeleteCardFormSubmit
+  handleDeleteCard
 );
-deleteCardPopup.setEventListeners();
+// deleteCardPopup.setEventListeners();
 
 function handleDeleteCard() {
   deleteCardPopup.open();
-  deleteCardPopup.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-  });
+  deleteCardPopup.handleSubmit(cardID);
+  // api.deleteRequest(cardID)
 }
 
 //FORM VALIDATION
