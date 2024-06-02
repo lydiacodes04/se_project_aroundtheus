@@ -19,41 +19,49 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 import { data } from "autoprefixer";
 
-//EVENT HANDLERS
-// function handleImageClick(data) {
-//   popupImage.open(data);
-// }
+//API
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
+    contentType: "application/json",
+  },
+});
 
-// function handleProfileEditSubmit(inputValues) {
-//   api.editProfile(inputValues.name, inputValues.about).then((data) => {
-//     userInfo.setUserInfo(data.name, data.about);
-//     profileEditPopup.close();
-//   });
-// }
+//Getting and displaying cards
 
-// //EVENT LISTENERS
-// profileEditButton.addEventListener("click", () => {
-//   const data = userInfo.getUserInfo();
-//   profileTitleInput.value = data.name;
-//   profileDescriptionInput.value = data.about;
-//   profileEditPopup.open();
-// });
+let section;
+api
+  .getInitialCards()
+  .then((cardData) => {
+    section = new Section(
+      { items: cardData, renderer: renderCards },
+      ".cards__list"
+    );
+    section.renderItems(cardData);
+  })
+  .catch((err) => console.error(err));
 
-// addNewCardButton.addEventListener("click", () => {
-//   newCardPopup.open();
-// });
+function handleImageClick(data) {
+  popupImage.open(data);
+}
+addNewCardButton.addEventListener("click", () => {
+  newCardPopup.open();
+});
 
-//SUBMIT handlers
-
-// function handleDeleteCardFormSubmit(cardID) {
-//   api.deleteRequest(cardID);
-// }
-
-// const profileEditFormValidator = new FormValidator(config, profileEditForm);
-// profileEditFormValidator.enableValidation();
-
-// const addCardFormValidator = new FormValidator(config, addCardForm);
-// addCardFormValidator.enableValidation();
+function renderCards(cardData) {
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleDeleteCard
+  );
+  return card.getView();
+  // const cardElement = card.getView();
+  // newCardPopup.close();
+  // newCardPopup.reset();
+  // addCardFormValidator.handleDisableButton();
+}
 
 function handleAddCardFormSubmit(data) {
   const cardData = { name: data.name, link: data.link };
@@ -71,32 +79,6 @@ function handleAddCardFormSubmit(data) {
     });
 }
 
-function renderCards(cardData) {
-  const card = new Card(
-    cardData,
-    "#card-template",
-    handleImageClick,
-    handleDeleteCard
-  );
-  const cardElement = card.getView();
-  section.addItem(cardElement);
-  newCardPopup.close();
-  newCardPopup.reset();
-  addCardFormValidator.handleDisableButton();
-}
-
-const section = new Section(
-  {
-    items: cardData,
-    renderer: renderCards(cardData),
-  },
-  ".cards__list"
-);
-
-section.renderItems();
-
-// const userInfo = new UserInfo(".profile__title", ".profile__description");
-
 const popupImage = new PopupWithImage("#image-preview-modal", {
   previewImageElement,
   previewImageElementTitle,
@@ -109,44 +91,53 @@ const newCardPopup = new PopupWithForm(
 );
 newCardPopup.setEventListeners();
 
-// const profileEditPopup = new PopupWithForm(
-//   "#profile-edit-modal",
-//   handleProfileEditSubmit
-// );
-// profileEditPopup.setEventListeners();
-
-// const deleteCardPopup = new PopupWithForm(
-//   "#delete-card-modal",
-//   handleDeleteCardFormSubmit
-// );
-// deleteCardPopup.setEventListeners();
-
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-    contentType: "application/json",
-  },
-});
-
-api
-  .getInitialCards()
-  .then((cardData) => {
-    // cardData.forEach((card) => {
-    //   renderCards(card);
-    // });
-    //Is renderCards to render one card or all the cards? If all, we don't need the forEach loop
-    renderCards(cardData);
-  })
-  .catch((err) => console.error(err));
+//Profile creation and editing
+const userInfo = new UserInfo(".profile__title", ".profile__description");
 
 api.getUser().then((inputValues) => {
   userInfo.setUserInfo(inputValues.name, inputValues.about);
 });
+function handleProfileEditSubmit(inputValues) {
+  api.editProfile(inputValues.name, inputValues.about).then((data) => {
+    userInfo.setUserInfo(data.name, data.about);
+    profileEditPopup.close();
+  });
+}
 
-// function handleDeleteCard() {
-//   deleteCardPopup.open();
-//   deleteCardPopup.addEventListener("submit", (evt) => {
-//     evt.preventDefault();
-//   });
-// }
+profileEditButton.addEventListener("click", () => {
+  const data = userInfo.getUserInfo();
+  profileTitleInput.value = data.name;
+  profileDescriptionInput.value = data.about;
+  profileEditPopup.open();
+});
+
+//DELETING CARDS
+function handleDeleteCardFormSubmit(cardID) {
+  api.deleteRequest(cardID);
+}
+const profileEditPopup = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileEditSubmit
+);
+profileEditPopup.setEventListeners();
+
+const deleteCardPopup = new PopupWithForm(
+  "#delete-card-modal",
+  handleDeleteCardFormSubmit
+);
+deleteCardPopup.setEventListeners();
+
+function handleDeleteCard() {
+  deleteCardPopup.open();
+  deleteCardPopup.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+  });
+}
+
+//FORM VALIDATION
+
+const profileEditFormValidator = new FormValidator(config, profileEditForm);
+profileEditFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(config, addCardForm);
+addCardFormValidator.enableValidation();
