@@ -1,4 +1,4 @@
-import { config, initialCards } from "../utils/constants.js";
+import { config } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
@@ -16,7 +16,6 @@ const addCardForm = document.querySelector("#add-card-form");
 //MAIN PAGE BUTTONS
 const profileEditButton = document.querySelector(".profile__edit-button");
 const addNewCardButton = document.querySelector(".profile__add-button");
-const trashButton = document.querySelector(".card__trash-button");
 
 //PREVIEW IMAGE EL
 const previewImageElement = document.querySelector(".modal__image-element");
@@ -53,32 +52,6 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
-//card generating functions
-
-// function createCard(cardData) {
-//   const card = new Card(
-//     cardData,
-//     "#card-template",
-//     handleImageClick,
-//     handleDeleteCard
-//   );
-//   const cardElement = card.getView();
-// }
-
-function renderCards(dataItem) {
-  const card = new Card(
-    dataItem,
-    "#card-template",
-    handleImageClick,
-    handleDeleteCard
-  );
-  const cardElement = card.getView();
-  section.addItem(cardElement);
-  // newCardPopup.close();
-  // newCardPopup.reset();
-  // addCardFormValidator.handleDisableButton();
-}
-
 //SUBMIT handlers
 function handleAddCardFormSubmit(data) {
   const cardData = { name: data.name, link: data.link };
@@ -100,31 +73,30 @@ function handleDeleteCardFormSubmit(cardID) {
   api.deleteRequest(cardID);
 }
 
-//instantiations
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
 
-const eliminateMe = [
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-];
+function renderCards(cardData) {
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleDeleteCard
+  );
+  const cardElement = card.getView();
+  section.addItem(cardElement);
+  newCardPopup.close();
+  newCardPopup.reset();
+  addCardFormValidator.handleDisableButton();
+}
 
 const section = new Section(
   {
-    items: eliminateMe,
-    renderer: (cardData) => {
-      const cardElement = renderCards(cardData);
-      section.addItem(cardElement);
-    },
+    items: cardData,
+    renderer: renderCards(cardData),
   },
   ".cards__list"
 );
@@ -167,10 +139,12 @@ const api = new Api({
 
 api
   .getInitialCards()
-  .then((data) => {
-    data.forEach((dataItem) => {
-      renderCards(dataItem);
-    });
+  .then((cardData) => {
+    // cardData.forEach((card) => {
+    //   renderCards(card);
+    // });
+    //Is renderCards to render one card or all the cards? If all, we don't need the forEach loop
+    renderCards(cardData);
   })
   .catch((err) => console.error(err));
 
