@@ -30,10 +30,7 @@ export default class Api {
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         link,
@@ -49,10 +46,7 @@ export default class Api {
   editProfile(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: "119b16d3-4721-4c28-968f-5c9b08f91550",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({ name, about }),
     }).then((res) => {
       if (res.ok) {
@@ -73,6 +67,22 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  //PATCH /users/me/avatar – Update avatar
+  // updateAvatar(avatar) {
+  //   return fetch(`${this._baseUrl}/cards/users/me/avatar`, {
+  //     method: "DELETE",
+  //     headers: this._headers,
+  //     body: JSON.stringify({
+  //       avatar,
+  //     }),
+  //   }).then((res) => {
+  //     if (res.ok) {
+  //       return res.json();
+  //     }
+  //     return Promise.reject(`Error: ${res.status}`);
+  //   });
+  // }
 }
 
 // renderAll() {

@@ -35,10 +35,16 @@ api
   .getInitialCards()
   .then((cardData) => {
     section = new Section(
-      { items: cardData, renderer: renderCards },
+      {
+        items: cardData,
+        renderer: (cardData) => {
+          const cardElement = createCard(cardData);
+          section.addItem(cardElement);
+        },
+      },
       ".cards__list"
     );
-    section.renderItems(cardData);
+    section.renderItems();
   })
   .catch((err) => console.error(err));
 
@@ -49,6 +55,17 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
+function createCard(cardData) {
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleDeleteCard
+  );
+  const cardElement = card.getView();
+  return cardElement;
+}
+
 function renderCards(cardData) {
   const card = new Card(
     cardData,
@@ -56,19 +73,19 @@ function renderCards(cardData) {
     handleImageClick,
     handleDeleteCard
   );
-  return card.getView();
-  // const cardElement = card.getView();
-  // newCardPopup.close();
-  // newCardPopup.reset();
-  // addCardFormValidator.handleDisableButton();
+  const cardElement = card.getView();
+  section.addItem(cardElement);
+  newCardPopup.close();
+  newCardPopup.reset();
+  addCardFormValidator.handleDisableButton();
 }
 
 function handleAddCardFormSubmit(data) {
   const cardData = { name: data.name, link: data.link };
   api
-    .addCard(data)
+    .addCard(data.name, data.link)
     .then((data) => {
-      const cardElement = renderCards(cardData);
+      const cardElement = createCard(data);
       section.addItem(cardElement);
       newCardPopup.close();
       newCardPopup.reset();
@@ -141,3 +158,22 @@ profileEditFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
+
+// const profileAvatar = document.querySelector(".profile__image");
+
+// const avatarEditPopup = new PopupWithForm(
+//   "#edit-avatar-modal",
+//   handleAddCardFormSubmit
+// );
+// avatarEditPopup.setEventListeners();
+
+// profileAvatar.addEventListener("click", () => {
+//   avatarEditPopup.open();
+//   api.updateAvatar;
+// });
+
+// api.updateAvatar().then((res) => {
+//   profileAvatar.replace(profileAvatar.url, res);
+//   return profileAvatar.url;
+// });
+// .catch((err) => console.error(err));
