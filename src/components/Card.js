@@ -18,9 +18,7 @@ export default class Card {
     this._likeButton.addEventListener("click", this._handleLikeButton);
 
     this._trashButton.addEventListener("click", () => {
-      //old code, immediate delete the card
       this._handleDeleteCard(this.cardID);
-      //new card, let's call the delete card function to make sure you really wanna delete the card
     });
 
     this._cardImageEl.addEventListener("click", () => {
@@ -31,11 +29,6 @@ export default class Card {
   _handleLikeButton = () => {
     this._likeButton.classList.toggle("card__like-button_active");
   };
-
-  // _handleDeleteCard() {
-  //   this._cardElement.remove();
-  //   this._element = null;
-  // }
 
   getView() {
     this._cardElement = document

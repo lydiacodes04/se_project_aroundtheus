@@ -67,39 +67,38 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  //PUT add and remove likes
+  addLike() {
+    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  removeLike() {
+    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
-
-//PUT add and remove likes
-// addLike() {
-//   return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
-//     method: "PUT",
-//     headers: this._headers,
-//     body: JSON.stringify({
-//       avatar,
-//     }),
-//   }).then((res) => {
-//     if (res.ok) {
-//       return res.json();
-//     }
-//     return Promise.reject(`Error: ${res.status}`);
-//   });
-// }
-
-//   removeLike() {
-//     return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
-//       method: "DELETE",
-//       headers: this._headers,
-//       body: JSON.stringify({
-//         avatar,
-//       }),
-//     }).then((res) => {
-//       if (res.ok) {
-//         return res.json();
-//       }
-//       return Promise.reject(`Error: ${res.status}`);
-//     });
-//   }
-// }
 
 //PATCH /users/me/avatar – Update avatar
 // updateAvatar(avatar) {
