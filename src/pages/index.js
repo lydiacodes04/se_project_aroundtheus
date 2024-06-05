@@ -66,19 +66,19 @@ function createCard(cardData) {
   return cardElement;
 }
 
-function renderCards(cardData) {
-  const card = new Card(
-    cardData,
-    "#card-template",
-    handleImageClick,
-    handleDeleteCard
-  );
-  const cardElement = card.getView();
-  section.addItem(cardElement);
-  newCardPopup.close();
-  newCardPopup.reset();
-  addCardFormValidator.handleDisableButton();
-}
+// function renderCards(cardData) {
+//   const card = new Card(
+//     cardData,
+//     "#card-template",
+//     handleImageClick,
+//     handleDeleteCard
+//   );
+//   const cardElement = card.getView();
+//   section.addItem(cardElement);
+//   newCardPopup.close();
+//   newCardPopup.reset();
+//   addCardFormValidator.handleDisableButton();
+// }
 
 function handleAddCardFormSubmit(data) {
   const cardData = { name: data.name, link: data.link };
@@ -142,10 +142,9 @@ const deleteCardPopup = new PopupWithForm(
 );
 // deleteCardPopup.setEventListeners();
 
-function handleDeleteCard() {
+function handleDeleteCard(cardID) {
   deleteCardPopup.open();
-  deleteCardPopup.handleSubmit(cardID);
-  // api.deleteRequest(cardID)
+  api.deleteRequest(cardID);
 }
 
 //FORM VALIDATION

@@ -19,9 +19,8 @@ export default class Card {
 
     this._trashButton.addEventListener("click", () => {
       //old code, immediate delete the card
-      // this._handleDeleteCard();
+      this._handleDeleteCard(this.cardID);
       //new card, let's call the delete card function to make sure you really wanna delete the card
-      this._handleDeleteCard(this);
     });
 
     this._cardImageEl.addEventListener("click", () => {
