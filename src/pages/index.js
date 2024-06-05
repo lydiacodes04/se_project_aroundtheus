@@ -60,7 +60,8 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    handleDeleteCard
+    handleDeleteCard,
+    handleAddLikeButton
   );
   const cardElement = card.getView();
   return cardElement;
@@ -145,6 +146,14 @@ const deleteCardPopup = new PopupWithForm(
 function handleDeleteCard(cardID) {
   deleteCardPopup.open();
   api.deleteRequest(cardID);
+}
+
+function handleAddLikeButton(likeButton, cardID) {
+  if (likeButton.classList.contains(".card__like-button_active")) {
+    api.removeLike(cardID);
+  } else {
+    api.addLike(cardID);
+  }
 }
 
 //FORM VALIDATION

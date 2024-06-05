@@ -69,13 +69,10 @@ export default class Api {
   }
 
   //PUT add and remove likes
-  addLike() {
+  addLike(cardID) {
     return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
       method: "PUT",
       headers: this._headers,
-      body: JSON.stringify({
-        avatar,
-      }),
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -84,13 +81,10 @@ export default class Api {
     });
   }
 
-  removeLike() {
+  removeLike(cardID) {
     return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
       method: "DELETE",
       headers: this._headers,
-      body: JSON.stringify({
-        avatar,
-      }),
     }).then((res) => {
       if (res.ok) {
         return res.json();
