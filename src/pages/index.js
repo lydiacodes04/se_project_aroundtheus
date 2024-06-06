@@ -146,13 +146,21 @@ function handleDeleteCard(cardID) {
 //   api.removeLike(cardID);
 // }
 
-function handleLikeButton(likeButton, cardID) {
-  if (likeButton.classList.contains("card__like-button_active")) {
-    api.removeLike(cardID);
-    likeButton.classList.remove("card__like-button_active");
+function handleLikeButton(likedStatus, cardID) {
+  if (likedStatus === isLiked) {
+    api
+      .removeLike(cardID)
+      .then(() => {
+        likeButton.classList.remove("card__like-button_active");
+      })
+      .catch((error) => console.error("Error removing like:", error));
   } else {
-    api.addLike(cardID);
-    likeButton.classList.add("card__like-button_active");
+    api
+      .addLike(cardID)
+      .then(() => {
+        likeButton.classList.add("card__like-button_active");
+      })
+      .catch((error) => console.error("Error adding like:", error));
   }
 }
 

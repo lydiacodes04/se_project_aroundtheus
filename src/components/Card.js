@@ -18,6 +18,7 @@ export default class Card {
     this._handleImageClick = handleImageClick;
     this._handleDeleteCard = handleDeleteCard;
     this._handleLikeButton = handleLikeButton;
+    this.isLiked = data.isLiked;
   }
 
   _setEventListeners() {
@@ -26,8 +27,11 @@ export default class Card {
 
     this._likeButton.addEventListener("click", (e) => {
       e.preventDefault();
+      if (this.isLiked) {
+        this._likeButton.classList.add("card__like-button_active");
+      }
       if (e.target === this._likeButton) {
-        this._handleLikeButton(this._likeButton, this.cardID);
+        this._handleLikeButton(this.isLiked, this.cardID);
       }
     });
 
