@@ -61,25 +61,13 @@ function createCard(cardData) {
     "#card-template",
     handleImageClick,
     handleDeleteCard,
-    handleAddLikeButton
+    handleLikeButton
+    //handleAddLike
+    // handleDeleteLike
   );
   const cardElement = card.getView();
   return cardElement;
 }
-
-// function renderCards(cardData) {
-//   const card = new Card(
-//     cardData,
-//     "#card-template",
-//     handleImageClick,
-//     handleDeleteCard
-//   );
-//   const cardElement = card.getView();
-//   section.addItem(cardElement);
-//   newCardPopup.close();
-//   newCardPopup.reset();
-//   addCardFormValidator.handleDisableButton();
-// }
 
 function handleAddCardFormSubmit(data) {
   const cardData = { name: data.name, link: data.link };
@@ -148,11 +136,23 @@ function handleDeleteCard(cardID) {
   api.deleteRequest(cardID);
 }
 
-function handleAddLikeButton(likeButton, cardID) {
+// function handleAddLike(likeButton, cardID) {
+//   likeButton.classList.add(".card__like-button_active");
+//   api.addLike(cardID);
+// }
+
+// function handleDeleteLike(likeButton, cardID) {
+//   likeButton.classList.remove(".card__like-button_active");
+//   api.removeLike(cardID);
+// }
+
+function handleLikeButton(likeButton, cardID) {
   if (likeButton.classList.contains(".card__like-button_active")) {
     api.removeLike(cardID);
+    likeButton.classList.remove(".card__like-button_active");
   } else {
     api.addLike(cardID);
+    likeButton.classList.add(".card__like-button_active");
   }
 }
 

@@ -81,17 +81,17 @@ export default class Api {
     });
   }
 
-  removeLike(cardID) {
-    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
-  }
+  // removeLike(cardID) {
+  //   return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+  //     method: "DELETE",
+  //     headers: this._headers,
+  //   }).then((res) => {
+  //     if (res.ok) {
+  //       return res.json();
+  //     }
+  //     return Promise.reject(`Error: ${res.status}`);
+  //   });
+  // }
 }
 
 //PATCH /users/me/avatar – Update avatar
