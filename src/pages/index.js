@@ -147,12 +147,12 @@ function handleDeleteCard(cardID) {
 // }
 
 function handleLikeButton(likeButton, cardID) {
-  if (likeButton.classList.contains(".card__like-button_active")) {
+  if (likeButton.classList.contains("card__like-button_active")) {
     api.removeLike(cardID);
-    likeButton.classList.remove(".card__like-button_active");
+    likeButton.classList.remove("card__like-button_active");
   } else {
     api.addLike(cardID);
-    likeButton.classList.add(".card__like-button_active");
+    likeButton.classList.add("card__like-button_active");
   }
 }
 
