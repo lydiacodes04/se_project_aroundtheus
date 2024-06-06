@@ -24,14 +24,15 @@ export default class Card {
   _setEventListeners() {
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._trashButton = this._cardElement.querySelector(".card__trash-button");
+    if (this.isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    }
 
     this._likeButton.addEventListener("click", (e) => {
       e.preventDefault();
-      if (this.isLiked) {
-        this._likeButton.classList.add("card__like-button_active");
-      }
+
       if (e.target === this._likeButton) {
-        this._handleLikeButton(this.isLiked, this.cardID);
+        this._handleLikeButton(this._likeButton, this.isLiked, this.cardID);
       }
     });
 

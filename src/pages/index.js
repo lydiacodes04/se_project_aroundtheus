@@ -146,8 +146,8 @@ function handleDeleteCard(cardID) {
 //   api.removeLike(cardID);
 // }
 
-function handleLikeButton(likedStatus, cardID) {
-  if (likedStatus === isLiked) {
+function handleLikeButton(likeButton, likedStatus, cardID) {
+  if (likedStatus) {
     api
       .removeLike(cardID)
       .then(() => {
