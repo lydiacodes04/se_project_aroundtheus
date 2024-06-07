@@ -62,8 +62,6 @@ function createCard(cardData) {
     handleImageClick,
     handleDeleteCard,
     handleLikeButton
-    //handleAddLike
-    // handleDeleteLike
   );
   const cardElement = card.getView();
   return cardElement;
@@ -136,16 +134,6 @@ function handleDeleteCard(cardID) {
   api.deleteRequest(cardID);
 }
 
-// function handleAddLike(likeButton, cardID) {
-//   likeButton.classList.add(".card__like-button_active");
-//   api.addLike(cardID);
-// }
-
-// function handleDeleteLike(likeButton, cardID) {
-//   likeButton.classList.remove(".card__like-button_active");
-//   api.removeLike(cardID);
-// }
-
 function handleLikeButton(likeButton, likedStatus, cardID) {
   if (likedStatus) {
     api
@@ -165,7 +153,6 @@ function handleLikeButton(likeButton, likedStatus, cardID) {
 }
 
 //FORM VALIDATION
-
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
