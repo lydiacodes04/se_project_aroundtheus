@@ -18,7 +18,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 import { data } from "autoprefixer";
-import PopupWithAvatar from "../components/PopupWithAvatar.js";
 
 //API
 const api = new Api({
@@ -161,7 +160,7 @@ addCardFormValidator.enableValidation();
 
 const profileAvatar = document.querySelector(".profile__avatar");
 
-const avatarEditPopup = new PopupWithAvatar(
+const avatarEditPopup = new PopupWithForm(
   "#edit-avatar-modal",
   handleAvatarSubmit
 );
@@ -173,8 +172,7 @@ profileAvatar.addEventListener("click", (e) => {
   }
 });
 
-function handleAvatarSubmit(link) {
-  avatarEditPopup.getInputLink(link);
+function handleAvatarSubmit({ link }) {
   api
     .updateAvatar(link)
     .then((res) => {

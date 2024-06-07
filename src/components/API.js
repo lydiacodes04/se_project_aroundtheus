@@ -96,9 +96,10 @@ export default class Api {
   }
 
   //PATCH /users/me/avatar – Update avatar
+
   updateAvatar(avatar) {
-    return fetch(`${this._baseUrl}/cards/users/me/avatar`, {
-      method: "DELETE",
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         avatar,

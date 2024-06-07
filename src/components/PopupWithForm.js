@@ -28,9 +28,4 @@ export default class PopupWithForm extends Popup {
     });
     super.setEventListeners();
   }
-
-  getInputLink() {
-    this._inputLink = this._popupForm.querySelector(".modal__input");
-    this._handleFormSubmit(this._inputLink);
-  }
 }
