@@ -26,11 +26,6 @@ export default class FormValidator {
   }
 
   _checkInputValidity(inputEl) {
-    this._inputEls.forEach((inputEl) => {
-      inputEl.addEventListener("input", (event) =>
-        this._checkInputValidity(event.target)
-      );
-    });
     if (!inputEl.validity.valid) {
       this._showInputError(inputEl);
     } else {
