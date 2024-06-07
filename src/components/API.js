@@ -96,18 +96,18 @@ export default class Api {
   }
 
   //PATCH /users/me/avatar – Update avatar
-  // updateAvatar(avatar) {
-  //   return fetch(`${this._baseUrl}/cards/users/me/avatar`, {
-  //     method: "DELETE",
-  //     headers: this._headers,
-  //     body: JSON.stringify({
-  //       avatar,
-  //     }),
-  //   }).then((res) => {
-  //     if (res.ok) {
-  //       return res.json();
-  //     }
-  //     return Promise.reject(`Error: ${res.status}`);
-  //   });
-  // }
+  updateAvatar(avatar) {
+    return fetch(`${this._baseUrl}/cards/users/me/avatar`, {
+      method: "DELETE",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }

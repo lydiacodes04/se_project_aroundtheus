@@ -18,6 +18,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 import { data } from "autoprefixer";
+import PopupWithAvatar from "../components/PopupWithAvatar.js";
 
 //API
 const api = new Api({
@@ -127,7 +128,6 @@ const deleteCardPopup = new PopupWithForm(
   "#delete-card-modal",
   handleDeleteCard
 );
-// deleteCardPopup.setEventListeners();
 
 function handleDeleteCard(cardID) {
   deleteCardPopup.open();
@@ -159,21 +159,27 @@ profileEditFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
 
-// const profileAvatar = document.querySelector(".profile__image");
+const profileAvatar = document.querySelector(".profile__avatar");
 
-// const avatarEditPopup = new PopupWithForm(
-//   "#edit-avatar-modal",
-//   handleAddCardFormSubmit
-// );
-// avatarEditPopup.setEventListeners();
+const avatarEditPopup = new PopupWithAvatar(
+  "#edit-avatar-modal",
+  handleAvatarSubmit
+);
+avatarEditPopup.setEventListeners();
 
-// profileAvatar.addEventListener("click", () => {
-//   avatarEditPopup.open();
-//   api.updateAvatar;
-// });
+profileAvatar.addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) {
+    avatarEditPopup.open();
+  }
+});
 
-// api.updateAvatar().then((res) => {
-//   profileAvatar.replace(profileAvatar.url, res);
-//   return profileAvatar.url;
-// });
-// .catch((err) => console.error(err));
+function handleAvatarSubmit(link) {
+  avatarEditPopup.getInputLink(link);
+  api
+    .updateAvatar(link)
+    .then((res) => {
+      profileAvatar.replace(profileAvatar.url, res);
+      return profileAvatar.url;
+    })
+    .catch((err) => console.error(err));
+}
