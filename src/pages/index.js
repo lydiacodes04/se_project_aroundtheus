@@ -97,11 +97,17 @@ const newCardPopup = new PopupWithForm(
 newCardPopup.setEventListeners();
 
 //Profile creation and editing
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+const userInfo = new UserInfo(
+  ".profile__title",
+  ".profile__description",
+  ".profile__image"
+);
 
 api.getUser().then((inputValues) => {
   userInfo.setUserInfo(inputValues.name, inputValues.about);
+  userInfo.setAvatar(inputValues.avatar);
 });
+
 function handleProfileEditSubmit(inputValues) {
   api.editProfile(inputValues.name, inputValues.about).then((data) => {
     userInfo.setUserInfo(data.name, data.about);
@@ -181,7 +187,7 @@ function handleAvatarSubmit({ link }) {
     .updateAvatar(link)
     .then((res) => {
       console.log("Avatar updated successfully:", res);
-      profileAvatar.src = res.avatar;
+      userInfo.setAvatar(link);
     })
     .catch((err) => {
       console.error("Error occurred while updating avatar:", err);
