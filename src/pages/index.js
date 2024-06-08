@@ -177,7 +177,6 @@ const avatarEditPopup = new PopupWithForm(
 avatarEditPopup.setEventListeners();
 
 function handleAvatarSubmit({ link }) {
-  console.log("form submit initiated with link:", link);
   api
     .updateAvatar(link)
     .then((res) => {
@@ -187,4 +186,5 @@ function handleAvatarSubmit({ link }) {
     .catch((err) => {
       console.error("Error occurred while updating avatar:", err);
     });
+  avatarEditPopup.close();
 }
