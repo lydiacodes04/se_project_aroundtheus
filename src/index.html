@@ -23,7 +23,7 @@
           <img
             src="<%=require('./images/Avatar.jpg')%>"
             alt="Avatar"
-            class="profile__avatar"
+            class="profile__image"
           />
           <div class="profile__info">
             <h1 class="profile__title"></h1>
@@ -155,7 +155,6 @@
         <p class="modal__image-caption"></p>
       </div>
     </div>
-
     <!--                           -->
     <!-- Confirm delete card modal -->
     <!--                           -->
@@ -172,7 +171,6 @@
         </form>
       </div>
     </div>
-
     <!--                   -->
     <!-- Edit Avatar modal -->
     <!--                    -->
@@ -184,7 +182,7 @@
           type="button"
         ></button>
         <p class="modal__heading">Change profile picture</p>
-        <form class="modal__form" id="add-card-form">
+        <form class="modal__form" id="edit-avatar-modal-form">
           <label class="modal__error_wrapper">
             <input
               class="modal__input modal__input_type_url"
@@ -194,7 +192,7 @@
               placeholder="Image link"
               required
             />
-            <span class="modal__error" id="card-image-input-error"></span>
+            <span class="modal__error" id="edit-avatar-input-error"></span>
           </label>
           <button class="modal__save" type="submit" disabled>Save</button>
         </form>

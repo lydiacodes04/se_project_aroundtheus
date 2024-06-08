@@ -106,6 +106,7 @@ export default class Api {
       }),
     }).then((res) => {
       if (res.ok) {
+        console.log("Fetch response OK");
         return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);

@@ -2,6 +2,7 @@ import {
   config,
   profileEditForm,
   addCardForm,
+  editAvatarForm,
   profileEditButton,
   addNewCardButton,
   previewImageElement,
@@ -158,13 +159,10 @@ profileEditFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
 
-const profileAvatar = document.querySelector(".profile__avatar");
+const editAvatarFormValidator = new FormValidator(config, editAvatarForm);
+editAvatarFormValidator.enableValidation();
 
-const avatarEditPopup = new PopupWithForm(
-  "#edit-avatar-modal",
-  handleAvatarSubmit
-);
-avatarEditPopup.setEventListeners();
+const profileAvatar = document.querySelector(".profile__image");
 
 profileAvatar.addEventListener("click", (e) => {
   if (e.target === e.currentTarget) {
@@ -172,12 +170,21 @@ profileAvatar.addEventListener("click", (e) => {
   }
 });
 
+const avatarEditPopup = new PopupWithForm(
+  "#edit-avatar-modal",
+  handleAvatarSubmit
+);
+avatarEditPopup.setEventListeners();
+
 function handleAvatarSubmit({ link }) {
+  console.log("form submit initiated with link:", link);
   api
     .updateAvatar(link)
     .then((res) => {
-      profileAvatar.replace(profileAvatar.url, res);
-      return profileAvatar.url;
+      console.log("Avatar updated successfully:", res);
+      profileAvatar.src = res.avatar;
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error("Error occurred while updating avatar:", err);
+    });
 }
