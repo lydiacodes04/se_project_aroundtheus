@@ -168,7 +168,7 @@ addCardFormValidator.enableValidation();
 const editAvatarFormValidator = new FormValidator(config, editAvatarForm);
 editAvatarFormValidator.enableValidation();
 
-const profileAvatar = document.querySelector(".profile__image");
+const profileAvatar = document.querySelector(".profile__image-pencil");
 
 profileAvatar.addEventListener("click", (e) => {
   if (e.target === e.currentTarget) {
