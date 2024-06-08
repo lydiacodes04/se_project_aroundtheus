@@ -20,11 +20,20 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/Avatar.jpg')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__image-container">
+            <img
+              src="<%=require('./images/solid black.jpg')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <div class="profile__image-overlay">
+              <img
+                src="<%=require('./images/profile pencil.svg')%>"
+                alt="pencil"
+                class="profile__image-pencil"
+              />
+            </div>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title"></h1>
             <button
