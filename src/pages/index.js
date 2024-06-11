@@ -168,12 +168,10 @@ addCardFormValidator.enableValidation();
 const editAvatarFormValidator = new FormValidator(config, editAvatarForm);
 editAvatarFormValidator.enableValidation();
 
-const profileAvatar = document.querySelector(".profile__image-pencil");
+const profileAvatar = document.querySelector(".profile__image-container");
 
-profileAvatar.addEventListener("click", (e) => {
-  if (e.target === e.currentTarget) {
-    avatarEditPopup.open();
-  }
+profileAvatar.addEventListener("click", () => {
+  avatarEditPopup.open();
 });
 
 const avatarEditPopup = new PopupWithForm(
@@ -185,8 +183,7 @@ avatarEditPopup.setEventListeners();
 function handleAvatarSubmit({ link }) {
   api
     .updateAvatar(link)
-    .then((res) => {
-      console.log("Avatar updated successfully:", res);
+    .then(() => {
       userInfo.setAvatar(link);
     })
     .catch((err) => {

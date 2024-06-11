@@ -37,20 +37,6 @@
   opacity: 100%;
 }
 
-/* .profile__image-pencil {
-  visibility: hidden;
-  height: 26px;
-  width: 26px;
-  position: absolute;
-  left: 45px;
-  
-} */
-
-/* .profile__image-pencil:hover {
-  visibility: visible;
-  cursor: pointer;
-} */
-
 .profile__info {
   display: grid;
   grid-template-areas: "title button" "subtitle subtitle";
