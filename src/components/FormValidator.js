@@ -66,9 +66,15 @@ export default class FormValidator {
     });
   }
 
+  setSaving() {
+    this._submitButton.classList.remove(".modal__save");
+    this._submitButton.classList.add(".modal__save_saving");
+  }
+
   enableValidation() {
     this._formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this.setSaving();
     });
     this._setEventListeners();
   }
