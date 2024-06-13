@@ -17,37 +17,48 @@ export default class Card {
     this.isLiked = data.isLiked;
   }
 
-  updateIsLiked(isLiked) {
-    this.isLiked = isLiked;
-    this.renderLikes();
-  }
+  //suggested version below is not working
+  // renderLikes() {
+  //   if (this.isLiked) {
+  //     this._likeButton.classList.add("card__like-button_active");
+  //     } else {
+  //       this._likeButton.classList.remove("card__like-button_active");
+  //     }
+  //   }
 
-  renderLikes() {
-    if (this.isLiked) {
-      this._likeButton.classList.add("card__like-button_active");
-    } else {
-      this._likeButton.classList.remove("card__like-button_active");
-    }
-  }
-
-  _setEventListeners() {
-    this._likeButton = this._cardElement.querySelector(".card__like-button");
+  setEventListeners() {
     this._trashButton = this._cardElement.querySelector(".card__trash-button");
+    this._likeButton = this._cardElement.querySelector(".card__like-button");
 
-    this._likeButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (e.target === this._likeButton) {
-        this._handleLikeButton(this);
-      }
+    this._cardImageEl.addEventListener("click", () => {
+      this._handleImageClick(this);
     });
 
     this._trashButton.addEventListener("click", () => {
       this._handleDeleteCard(this.cardID);
     });
 
-    this._cardImageEl.addEventListener("click", () => {
-      this._handleImageClick(this);
+    this._likeButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (e.target === this._likeButton) {
+        this.updateIsLiked;
+        this._handleLikeButton(this);
+      }
     });
+  }
+
+  updateIsLiked(isLiked) {
+    this.isLiked = isLiked;
+    this.renderLikes();
+  }
+
+  renderLikes() {
+    this._likeButton = this._cardElement.querySelector(".card__like-button");
+    if (this.isLiked) {
+      this._likeButton.classList.remove("card__like-button_active");
+    } else {
+      this._likeButton.classList.add("card__like-button_active");
+    }
   }
 
   getView() {
@@ -62,7 +73,7 @@ export default class Card {
     this._cardImageEl.alt = this.name;
     this._cardTitleEl.textContent = this.name;
     this.renderLikes();
-    this._setEventListeners();
+    this.setEventListeners();
     return this._cardElement;
   }
 }
