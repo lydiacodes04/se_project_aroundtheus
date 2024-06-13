@@ -47,7 +47,7 @@ api
     );
     section.renderItems();
   })
-  .catch((err) => console.error(err));
+  .catch((err) => console.error("an error occurred rendering cards", err));
 
 function handleImageClick(data) {
   popupImage.open(data);
@@ -140,19 +140,19 @@ function handleDeleteCard(cardID) {
   api.deleteRequest(cardID);
 }
 
-function handleLikeButton(likeButton, likedStatus, cardID) {
-  if (likedStatus) {
+function handleLikeButton(card) {
+  if (card.isLiked) {
     api
-      .removeLike(cardID)
+      .removeLike(card.cardID)
       .then(() => {
-        likeButton.classList.remove("card__like-button_active");
+        card.updateIsLiked(false);
       })
       .catch((error) => console.error("Error removing like:", error));
   } else {
     api
-      .addLike(cardID)
+      .addLike(card.cardID)
       .then(() => {
-        likeButton.classList.add("card__like-button_active");
+        card.updateIsLiked(true);
       })
       .catch((error) => console.error("Error adding like:", error));
   }

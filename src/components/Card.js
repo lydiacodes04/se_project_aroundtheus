@@ -1,5 +1,3 @@
-// import { deleteCardPopup } from "../pages/index.js";
-
 export default class Card {
   constructor(
     data,
@@ -7,8 +5,6 @@ export default class Card {
     handleImageClick,
     handleDeleteCard,
     handleLikeButton
-    // handleAddLike
-    // handleRemoveLike
   ) {
     this.name = data.name;
     this.link = data.link;
@@ -21,18 +17,27 @@ export default class Card {
     this.isLiked = data.isLiked;
   }
 
+  updateIsLiked(isLiked) {
+    this.isLiked = isLiked;
+    this.renderLikes();
+  }
+
+  renderLikes() {
+    if (this.isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
+  }
+
   _setEventListeners() {
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     this._trashButton = this._cardElement.querySelector(".card__trash-button");
-    if (this.isLiked) {
-      this._likeButton.classList.add("card__like-button_active");
-    }
 
     this._likeButton.addEventListener("click", (e) => {
       e.preventDefault();
-
       if (e.target === this._likeButton) {
-        this._handleLikeButton(this._likeButton, this.isLiked, this.cardID);
+        this._handleLikeButton(this);
       }
     });
 
@@ -56,7 +61,7 @@ export default class Card {
     this._cardImageEl.src = this.link;
     this._cardImageEl.alt = this.name;
     this._cardTitleEl.textContent = this.name;
-
+    this.renderLikes();
     this._setEventListeners();
     return this._cardElement;
   }
