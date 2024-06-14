@@ -4,28 +4,31 @@ export default class Api {
     this._headers = headers;
   }
 
+  // _request(url, options) {
+  //   return fetch(url, options).then(this._checkResponse);
+  // }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
   //CARD ROUTE: get all the cards (GET)
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, { headers: this._headers }).then(
-      (res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      }
+      this._checkResponse
     );
   }
+
   // USER ROUTE: get current user's info (GET)
   getUser() {
     return fetch(`${this._baseUrl}/users/me`, { headers: this._headers }).then(
-      (res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      }
+      this._checkResponse
     );
   }
+
   //CARD ROUTE: create a card (POST)
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
