@@ -71,6 +71,7 @@ function createCard(cardData) {
 
 function handleAddCardFormSubmit(data) {
   const cardData = { name: data.name, link: data.link };
+  newCardPopup.renderLoading(true);
   api
     .addCard(data.name, data.link)
     .then((data) => {
@@ -82,6 +83,10 @@ function handleAddCardFormSubmit(data) {
     })
     .catch((error) => {
       console.error("Error adding card:", error);
+    })
+    .finally(() => {
+      newCardPopup.renderLoading(false);
+      newCardPopup.close();
     });
 }
 
