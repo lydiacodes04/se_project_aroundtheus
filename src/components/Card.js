@@ -32,7 +32,6 @@ export default class Card {
     this._likeButton.addEventListener("click", (e) => {
       e.preventDefault();
       if (e.target === this._likeButton) {
-        this.updateIsLiked;
         this._handleLikeButton(this);
       }
     });

@@ -19,6 +19,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/API.js";
 import { data } from "autoprefixer";
+import PopupConfirmDelete from "../components/PopupConfirmDelete.js";
 
 //API
 const api = new Api({
@@ -130,14 +131,14 @@ const profileEditPopup = new PopupWithForm(
 );
 profileEditPopup.setEventListeners();
 
-const deleteCardPopup = new PopupWithForm(
+const deleteCardPopup = new PopupConfirmDelete(
   "#delete-card-modal",
   handleDeleteCard
 );
 
 function handleDeleteCard(cardID) {
   deleteCardPopup.open();
-  deleteCardPopup.setEventListeners();
+  deleteCardPopup.confirmDelete(cardID);
   api.deleteRequest(cardID);
 }
 
