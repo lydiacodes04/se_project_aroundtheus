@@ -110,10 +110,20 @@ api.getUser().then((inputValues) => {
 });
 
 function handleProfileEditSubmit(inputValues) {
-  api.editProfile(inputValues.name, inputValues.about).then((data) => {
-    userInfo.setUserInfo(data.name, data.about);
-    profileEditPopup.close();
-  });
+  profileEditPopup.renderLoading(true);
+  api
+    .editProfile(inputValues.name, inputValues.about)
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about);
+      profileEditPopup.close();
+    })
+    .catch((err) => {
+      console.error("Error occurred while updating profile", err);
+    })
+    .finally(() => {
+      profileEditPopup.renderLoading(false);
+      profileEditPopup.close();
+    });
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -183,6 +193,7 @@ const avatarEditPopup = new PopupWithForm(
 avatarEditPopup.setEventListeners();
 
 function handleAvatarSubmit({ link }) {
+  avatarEditPopup.renderLoading(true);
   api
     .updateAvatar(link)
     .then(() => {
@@ -190,6 +201,9 @@ function handleAvatarSubmit({ link }) {
     })
     .catch((err) => {
       console.error("Error occurred while updating avatar:", err);
+    })
+    .finally(() => {
+      avatarEditPopup.renderLoading(false);
+      avatarEditPopup.close();
     });
-  avatarEditPopup.close();
 }
