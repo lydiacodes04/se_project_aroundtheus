@@ -17,15 +17,6 @@ export default class Card {
     this.isLiked = data.isLiked;
   }
 
-  //suggested version below is not working
-  // renderLikes() {
-  //   if (this.isLiked) {
-  //     this._likeButton.classList.add("card__like-button_active");
-  //     } else {
-  //       this._likeButton.classList.remove("card__like-button_active");
-  //     }
-  //   }
-
   setEventListeners() {
     this._trashButton = this._cardElement.querySelector(".card__trash-button");
     this._likeButton = this._cardElement.querySelector(".card__like-button");
@@ -55,9 +46,9 @@ export default class Card {
   renderLikes() {
     this._likeButton = this._cardElement.querySelector(".card__like-button");
     if (this.isLiked) {
-      this._likeButton.classList.remove("card__like-button_active");
-    } else {
       this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
     }
   }
 

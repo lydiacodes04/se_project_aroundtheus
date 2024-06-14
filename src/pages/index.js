@@ -137,6 +137,7 @@ const deleteCardPopup = new PopupWithForm(
 
 function handleDeleteCard(cardID) {
   deleteCardPopup.open();
+  deleteCardPopup.setEventListeners();
   api.deleteRequest(cardID);
 }
 
