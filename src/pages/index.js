@@ -48,7 +48,7 @@ api
     );
     section.renderItems();
   })
-  .catch((err) => console.error("an error occurred rendering cards", err));
+  .catch((err) => console.error("Error rendering cards:", err));
 
 function handleImageClick(data) {
   popupImage.open(data);
@@ -62,7 +62,7 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    handleDeleteCard,
+    confirmDelete,
     handleLikeButton
   );
   const cardElement = card.getView();
@@ -109,10 +109,15 @@ const userInfo = new UserInfo(
   ".profile__image"
 );
 
-api.getUser().then((inputValues) => {
-  userInfo.setUserInfo(inputValues.name, inputValues.about);
-  userInfo.setAvatar(inputValues.avatar);
-});
+api
+  .getUser()
+  .then((inputValues) => {
+    userInfo.setUserInfo(inputValues.name, inputValues.about);
+    userInfo.setAvatar(inputValues.avatar);
+  })
+  .catch((err) => {
+    console.error("Error getting user information:", err);
+  });
 
 function handleProfileEditSubmit(inputValues) {
   profileEditPopup.renderLoading(true);
@@ -123,7 +128,7 @@ function handleProfileEditSubmit(inputValues) {
       profileEditPopup.close();
     })
     .catch((err) => {
-      console.error("Error occurred while updating profile", err);
+      console.error("Error updating profile:", err);
     })
     .finally(() => {
       profileEditPopup.renderLoading(false);
@@ -146,15 +151,22 @@ const profileEditPopup = new PopupWithForm(
 );
 profileEditPopup.setEventListeners();
 
-const deleteCardPopup = new PopupConfirmDelete(
-  "#delete-card-modal",
-  handleDeleteCard
-);
+const deleteCardPopup = new PopupConfirmDelete("#delete-card-modal");
 
-function handleDeleteCard(cardID) {
+function confirmDelete(card) {
   deleteCardPopup.open();
-  deleteCardPopup.confirmDelete(cardID);
-  api.deleteRequest(cardID);
+  deleteCardPopup.setEventListeners();
+  deleteCardPopup.setConfirmDelete(() => {
+    api
+      .deleteRequest(card.cardID)
+      .then(() => {
+        deleteCardPopup.close();
+        card.removeCardElement();
+      })
+      .catch((err) => {
+        console.error("Error deleting card:", err);
+      });
+  });
 }
 
 function handleLikeButton(card) {
@@ -205,7 +217,7 @@ function handleAvatarSubmit({ link }) {
       userInfo.setAvatar(link);
     })
     .catch((err) => {
-      console.error("Error occurred while updating avatar:", err);
+      console.error("Error updating avatar:", err);
     })
     .finally(() => {
       avatarEditPopup.renderLoading(false);

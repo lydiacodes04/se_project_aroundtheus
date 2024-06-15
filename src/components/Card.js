@@ -26,7 +26,7 @@ export default class Card {
     });
 
     this._trashButton.addEventListener("click", () => {
-      this._handleDeleteCard(this.cardID);
+      this._handleDeleteCard(this);
     });
 
     this._likeButton.addEventListener("click", (e) => {
@@ -65,5 +65,10 @@ export default class Card {
     this.renderLikes();
     this.setEventListeners();
     return this._cardElement;
+  }
+
+  removeCardElement() {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 }

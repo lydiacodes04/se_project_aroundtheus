@@ -4,6 +4,7 @@ export default class Api {
     this._headers = headers;
   }
 
+  // suggestion
   // _request(url, options) {
   //   return fetch(url, options).then(this._checkResponse);
   // }
