@@ -62,7 +62,7 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    confirmDelete,
+    handleDelete,
     handleLikeButton
   );
   const cardElement = card.getView();
@@ -70,14 +70,12 @@ function createCard(cardData) {
 }
 
 function handleAddCardFormSubmit(data) {
-  const cardData = { name: data.name, link: data.link };
   newCardPopup.renderLoading(true);
   api
     .addCard(data.name, data.link)
     .then((data) => {
       const cardElement = createCard(data);
       section.addItem(cardElement);
-      newCardPopup.close();
       newCardPopup.reset();
       addCardFormValidator.handleDisableButton();
     })
@@ -152,10 +150,10 @@ const profileEditPopup = new PopupWithForm(
 profileEditPopup.setEventListeners();
 
 const deleteCardPopup = new PopupConfirmDelete("#delete-card-modal");
+deleteCardPopup.setEventListeners();
 
-function confirmDelete(card) {
+function handleDelete(card) {
   deleteCardPopup.open();
-  deleteCardPopup.setEventListeners();
   deleteCardPopup.setConfirmDelete(() => {
     api
       .deleteRequest(card.cardID)

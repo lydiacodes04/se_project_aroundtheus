@@ -43,7 +43,6 @@ export default class Card {
   }
 
   renderLikes() {
-    this._likeButton = this._cardElement.querySelector(".card__like-button");
     if (this.isLiked) {
       this._likeButton.classList.add("card__like-button_active");
     } else {
@@ -62,8 +61,8 @@ export default class Card {
     this._cardImageEl.src = this.link;
     this._cardImageEl.alt = this.name;
     this._cardTitleEl.textContent = this.name;
-    this.renderLikes();
     this.setEventListeners();
+    this.renderLikes();
     return this._cardElement;
   }
 
