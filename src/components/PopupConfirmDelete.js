@@ -18,9 +18,4 @@ export default class PopupConfirmDelete extends Popup {
       this._handleFormSubmit();
     });
   }
-
-  // removeElement(card) {
-  //   this.remove(card);
-  //   // this = null;
-  // }
 }
