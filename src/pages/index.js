@@ -53,6 +53,7 @@ api
 function handleImageClick(data) {
   popupImage.open(data);
 }
+
 addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
@@ -78,13 +79,13 @@ function handleAddCardFormSubmit(data) {
       section.addItem(cardElement);
       newCardPopup.reset();
       addCardFormValidator.handleDisableButton();
+      newCardPopup.close();
     })
     .catch((error) => {
       console.error("Error adding card:", error);
     })
     .finally(() => {
       newCardPopup.renderLoading(false);
-      newCardPopup.close();
     });
 }
 
@@ -130,7 +131,6 @@ function handleProfileEditSubmit(inputValues) {
     })
     .finally(() => {
       profileEditPopup.renderLoading(false);
-      profileEditPopup.close();
     });
 }
 
@@ -213,12 +213,12 @@ function handleAvatarSubmit({ link }) {
     .updateAvatar(link)
     .then(() => {
       userInfo.setAvatar(link);
+      avatarEditPopup.close();
     })
     .catch((err) => {
       console.error("Error updating avatar:", err);
     })
     .finally(() => {
       avatarEditPopup.renderLoading(false);
-      avatarEditPopup.close();
     });
 }
