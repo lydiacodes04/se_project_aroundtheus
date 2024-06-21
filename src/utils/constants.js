@@ -33,3 +33,27 @@ export const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+//FORMS
+export const profileEditForm = document.forms["profile-edit-modal-form"];
+export const addCardForm = document.querySelector("#add-card-form");
+export const editAvatarForm = document.querySelector("#edit-avatar-modal-form");
+
+//MAIN PAGE BUTTONS
+export const profileEditButton = document.querySelector(
+  ".profile__edit-button"
+);
+export const addNewCardButton = document.querySelector(".profile__add-button");
+
+//PREVIEW IMAGE EL
+export const previewImageElement = document.querySelector(
+  ".modal__image-element"
+);
+export const previewImageElementTitle = document.querySelector(
+  ".modal__image-caption"
+);
+//profile inputs
+export const profileTitleInput = document.querySelector("#profile-title-input");
+export const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
