@@ -21,8 +21,11 @@ Here are a few screenshots of the project:
 ![tablet image](./images/demo/800px%20tablet.png)
 ![phone image](./images/demo/320px%20phone.png)
 
-I created a video describing the project's features. You can view it here:
+I created an initial video describing the project's features. You can view it here:
 [Link to my video: Project 3 demo](https://drive.google.com/file/d/1IMFnQz4o8_h3-tnFMQuBl8rgOnsdqzyf/view?usp=drive_link/)
+
+I created another video after completing the project. You can view it here:
+[Link to my video: Building a Web-Based App with Webpack](https://www.loom.com/share/a30122b00c504e278ae1d48a1ec9f4a0?sid=2e4fe281-d876-4ad8-b7ae-5b1f462a872c)
 
 **Plans for improvement**
 My plans for improving the project include making it increasingly more interactive. I would like for users to be able to see other users' profiles and for users to be able to comment on each others' pictures. 
